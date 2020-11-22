@@ -17,7 +17,7 @@ Scenario.nrofHostGroups = 1
 
 MovementModel.worldSize = 2150, 1300
 
-MapBasedMovement.nrofMapFiles = 14
+MapBasedMovement.nrofMapFiles = 15
 MapBasedMovement.mapFile1 = data/mi/1-corridor.wkt
 MapBasedMovement.mapFile2 = data/mi/2-corridor.wkt
 MapBasedMovement.mapFile3 = data/mi/3-corridor.wkt
@@ -34,6 +34,8 @@ MapBasedMovement.mapFile12 = data/mi/main_entrance.wkt
 MapBasedMovement.mapFile13 = data/mi/main2_corridor.wkt
 
 MapBasedMovement.mapFile14 = data/mi/u-bahn.wkt
+
+MapBasedMovement.mapFile15 = data/mi/corridor-connections.wkt
 
 
 ############
@@ -69,7 +71,7 @@ Group.speed = 0.5, 1.5
 ## Group 1 Students d
 Group1.groupID = S
 Group1.nrofHosts = 10
-Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
+Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 
 
 #############
