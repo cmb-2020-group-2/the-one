@@ -1,0 +1,89 @@
+
+#########################
+### Scenario settings ###
+
+# Name to identify the present scenario
+Scenario.name = Assignment-1
+# How frequently to sample the simulation
+Scenario.updateInterval = 0.1
+# How long the simulation will run (in seconds)
+Scenario.endTime = 16000
+
+Scenario.simulateConnections = false
+Scenario.nrofHostGroups = 1
+
+###############################
+### Movement model settings ###
+
+MovementModel.worldSize = 2150, 1300
+
+MapBasedMovement.nrofMapFiles = 14
+MapBasedMovement.mapFile1 = data/mi/1-corridor.wkt
+MapBasedMovement.mapFile2 = data/mi/2-corridor.wkt
+MapBasedMovement.mapFile3 = data/mi/3-corridor.wkt
+MapBasedMovement.mapFile4 = data/mi/4-corridor.wkt
+MapBasedMovement.mapFile5 = data/mi/5-corridor.wkt
+MapBasedMovement.mapFile6 = data/mi/6-corridor.wkt
+MapBasedMovement.mapFile7 = data/mi/7-corridor.wkt
+MapBasedMovement.mapFile8 = data/mi/8-corridor.wkt
+MapBasedMovement.mapFile9 = data/mi/9-corridor.wkt
+MapBasedMovement.mapFile10 = data/mi/10-corridor.wkt
+
+MapBasedMovement.mapFile11 = data/mi/main1_corridor.wkt
+MapBasedMovement.mapFile12 = data/mi/main_entrance.wkt
+MapBasedMovement.mapFile13 = data/mi/main2_corridor.wkt
+
+MapBasedMovement.mapFile14 = data/mi/u-bahn.wkt
+
+
+############
+## Events ##
+Events.nrof = 0
+
+##########################
+### Network Interfaces ###
+
+myInterface.type = SimpleBroadcastInterface
+myInterface.transmitRange = 0
+myInterface.transmitSpeed = 0
+
+##############
+### Groups ###
+
+## Common settings for all groups
+
+# Mobility model for all the nodes
+Group.movementModel = MapBasedMovement
+Group.router = EpidemicRouter
+# Buffer size of any node
+Group.bufferSize = 5M
+# All nodes have the myInterface interface
+Group.nrofInterfaces = 1
+Group.interface1 = myInterface
+Group.movement = MapBasedMovement
+# Walking speeds
+Group.speed = 0.5, 1.5
+# Message TTL of 300 minutes (5 hours)
+# Group.msgTtl = 300
+
+## Group 1 Students d
+Group1.groupID = S
+Group1.nrofHosts = 10
+Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
+
+
+#############
+## Reports ##
+Report.nrofReports = 0
+
+##################
+## GUI settings ##
+
+# GUI underlay image settings
+#GUI.UnderlayImage.fileName = data/mi/map.png
+# Image offset in pixels (x, y)
+#GUI.UnderlayImage.offset = -415, -360
+# Scaling factor for the image
+#GUI.UnderlayImage.scale = 1.0
+# Image rotation (radians)
+#GUI.UnderlayImage.rotate = +0.0
