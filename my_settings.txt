@@ -9,7 +9,7 @@ Scenario.updateInterval = 0.1
 # How long the simulation will run (in seconds)
 Scenario.endTime = 16000
 
-Scenario.simulateConnections = false
+Scenario.simulateConnections = true
 Scenario.nrofHostGroups = 2
 
 ###############################
@@ -46,8 +46,8 @@ Events.nrof = 0
 ### Network Interfaces ###
 
 myInterface.type = SimpleBroadcastInterface
-myInterface.transmitRange = 0
-myInterface.transmitSpeed = 0
+myInterface.transmitRange = 10
+myInterface.transmitSpeed = 1
 
 ##############
 ### Groups ###
@@ -81,8 +81,11 @@ Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 
 #############
 ## Reports ##
-Report.nrofReports = 0
-
+Report.nrofReports = 1
+# Directory where reports would be created
+Report.reportDir = reports/Assignment-1
+# Report classes to load
+Report.report1 = InterContactTimesReport
 ##################
 ## GUI settings ##
 
