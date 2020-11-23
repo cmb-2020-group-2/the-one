@@ -17,6 +17,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.Vector;
 
+import input.WKTReader;
 import movement.map.MapNode;
 import movement.map.SimMap;
 import core.Coord;
@@ -65,6 +66,9 @@ public class MapBasedMovement extends MovementModel implements SwitchableMovemen
 	/** names of the previously cached map's files (for hit comparison) */
 	private static List<String> cachedMapFiles = null;
 
+	public static final String INITIAL_LOCATION_FILE_SETTING = "initialLocationFile";
+	public Coord initialLocation;
+
 	/**
 	 * Creates a new MapBasedMovement based on a Settings object's settings.
 	 * @param settings The Settings object where the settings are read from
@@ -76,6 +80,21 @@ public class MapBasedMovement extends MovementModel implements SwitchableMovemen
 		maxPathLength = 100;
 		minPathLength = 10;
 		backAllowed = false;
+		if (settings.contains(INITIAL_LOCATION_FILE_SETTING)) {
+			try {
+				double[] xy = settings.getCsvDoubles(INITIAL_LOCATION_FILE_SETTING);
+				initialLocation = new Coord(xy[0], xy[1]).clone();
+				SimMap map = getMap();
+				Coord offset = map.getOffset();
+				// mirror points if map data is mirrored
+				if (map.isMirrored()) {
+					initialLocation.setLocation(initialLocation.getX(), -initialLocation.getY());
+				}
+				initialLocation.translate(offset.getX(), offset.getY());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
@@ -93,6 +112,21 @@ public class MapBasedMovement extends MovementModel implements SwitchableMovemen
 		maxPathLength = 100;
 		minPathLength = 10;
 		backAllowed = false;
+		if (settings.contains(INITIAL_LOCATION_FILE_SETTING)) {
+			try {
+				double[] xy = settings.getCsvDoubles(INITIAL_LOCATION_FILE_SETTING);
+				initialLocation = new Coord(xy[0], xy[1]).clone();
+				SimMap map = getMap();
+				Coord offset = map.getOffset();
+				// mirror points if map data is mirrored
+				if (map.isMirrored()) {
+					initialLocation.setLocation(initialLocation.getX(), -initialLocation.getY());
+				}
+				initialLocation.translate(offset.getX(), offset.getY());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
@@ -133,6 +167,7 @@ public class MapBasedMovement extends MovementModel implements SwitchableMovemen
 		this.minPathLength = mbm.minPathLength;
 		this.maxPathLength = mbm.maxPathLength;
 		this.backAllowed = mbm.backAllowed;
+		this.initialLocation = mbm.initialLocation;
 	}
 
 	/**
@@ -140,6 +175,12 @@ public class MapBasedMovement extends MovementModel implements SwitchableMovemen
 	 */
 	@Override
 	public Coord getInitialLocation() {
+		if (initialLocation != null) {
+			Coord ret = initialLocation.clone();
+			initialLocation = null;
+			this.lastMapNode = map.getNodeByCoord(ret);
+			return ret;
+		}
 		List<MapNode> nodes = map.getNodes();
 		MapNode n,n2;
 		Coord n2Location, nLocation, placement;
