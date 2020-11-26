@@ -62,21 +62,46 @@ Group.bufferSize = 5M
 # All nodes have the myInterface interface
 Group.nrofInterfaces = 1
 Group.interface1 = myInterface
-Group.movement = MapBasedMovement
 # Walking speeds
 Group.speed = 0.5, 1.5
 # Message TTL of 300 minutes (5 hours)
 # Group.msgTtl = 300
 
+# Course Related Parameters
+Group.courseLength = 60
+Group.nrOfCourses = 2
+Group.courseSize = 5
+Group.breakControlSystemNr = 1
+Group.minAfterBreakStopTime = 10
+Group.maxAfterBreakStopTime = 100
+
+
+# Student Day Parameters
+Group.breakProb = 0.6
+Group.courseProb = 0.8
+Group.uBahnProb = 0.2
+Group.ubahnLocation = 1910, -75
+
+# Break Related Parameters
+Group.nrOfTables = 3
+Group.minGroupSize = 2
+Group.maxGroupSize = 5
+Group.courseWaitTimeParetoCoeff = 0.5
+Group.courseMinWaitTime = 10
+Group.courseMaxWaitTime = 100
+Group.timeDiffSTD = 7200
+
 ## Group 1 Students in building
 Group1.groupID = S
-Group1.nrofHosts = 5
+Group1.nrofHosts = 10
+Group1.movementModel = StudentDayMovement
+Group1.tablesFile = data/mi/tables.wkt
 Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 
 ## Group 2 Students from u bahn
 Group2.groupID = U
-Group2.nrofHosts = 10
-Group2.initialLocationFile = 1910, -75
+Group2.nrofHosts = 1
+
 Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 
 #############
