@@ -96,6 +96,8 @@ Group1.groupID = S
 Group1.nrofHosts = 10
 Group1.movementModel = StudentDayMovement
 Group1.tablesFile = data/mi/tables.wkt
+Group1.nrOfCourses = 10
+Group1.courseLocationsFile = data/mi/courses.wkt
 Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 
 ## Group 2 Students from u bahn
