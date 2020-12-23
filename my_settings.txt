@@ -69,7 +69,7 @@ Group.speed = 0.5, 1.5
 
 # Course Related Parameters
 Group.courseLength = 1000
-Group.nrOfCourses = 10
+Group.nrOfCourses = 60
 Group.courseSize = 5
 Group.courseWaitTimeParetoCoeff = 0.5
 Group.courseMinWaitTime = 10
