@@ -13,21 +13,7 @@ Scenario.simulateConnections = true
 Scenario.nrofHostGroups = 2
 ###########################
 
-## Message creation parameters
-# How many event generators
-Events.nrof = 1
-# Class of the first event generator
-Events1.class = SingleMessageGenerator
-# (following settings are specific for the MessageEventGenerator class)
-# Creation interval in seconds (one new message every 25 to 35 seconds)
-Events1.interval = 100k,100k
-# Message sizes (50kB - 150kB)
-Events1.size = 50k,150k
-# range of message source/destination addresses
-Events1.hosts = 1,40
-Events1.toHosts = 0,0
-# Message ID prefix
-Events1.prefix = M
+
 
 ###############################
 ### Movement model settings ###
@@ -57,23 +43,42 @@ MapBasedMovement.mapFile15 = data/mi/corridor-connections.wkt
 
 ############
 ## Events ##
-Events.nrof = 0
+
+## Message creation parameters
+# How many event generators
+Events.nrof = 1
+# Class of the first event generator
+Events1.class = SingleMessageGenerator
+# (following settings are specific for the MessageEventGenerator class)
+# Creation interval in seconds (one new message every 25 to 35 seconds)
+Events1.interval = 100k,100k
+# Message sizes (50kB - 150kB)
+Events1.size = 50k,150k
+# range of message source/destination addresses
+Events1.hosts = 1,40
+Events1.toHosts = 0,0
+# Message ID prefix
+Events1.prefix = M
 
 ##########################
 ### Network Interfaces ###
 
 # speed decreases as distance increases
 maskInterface.type = DistanceCapacityInterface
-maskInterface.transmitRange = 100
+maskInterface.transmitRange = 5
 # Max min speed, the speed between the steps is linearly interpolated.
-maskInterface.transmitSpeeds = 300k, 10k
-# this value is not used but needed
-maskInterface.transmitSpeed = 1
+maskInterface.transmitSpeeds = 250k, 100k
 
 bareInterface.type = DistanceCapacityInterface
-bareInterface.transmitRange = 20
-bareInterface.transmitSpeeds = 100k, 10k
-bareInterface.transmitSpeed = 1
+bareInterface.transmitRange = 30
+bareInterface.transmitSpeeds = 800k, 250k
+
+
+
+# this value is not used but needed
+maskInterface.transmitSpeed = 1
+### this value is not used but needed
+bareInterface.transmitSpeed = 10
 
 ##############
 ### Groups ###
@@ -94,7 +99,7 @@ Group.speed = 0.5, 1.5
 # Message TTL of 300 minutes (5 hours)
 # Group.msgTtl = 300
 
-# Group0 with a single stationary node without networking that serves as a fake destination for the message.
+# Group3 with a single stationary node without networking that serves as a fake destination for the message.
 Group3.groupID = dest
 Group3.nrofHosts = 1
 Group3.movementModel = StationaryMovement
@@ -102,6 +107,7 @@ Group3.nodeLocation = 0,0
 Group3.nrofInterfaces = 0
 
 ## Group 1 Students in building
+Group1.groupID = S
 Group1.groupID = S
 Group1.nrofHosts = 5
 Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
