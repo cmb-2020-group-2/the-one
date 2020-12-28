@@ -260,11 +260,13 @@ public class EventLogPanel extends JPanel
 
 	// Implementations of ConnectionListener and MessageListener interfaces
 	public void hostsConnected(DTNHost host1, DTNHost host2) {
-		processEvent(conUpCheck, "Connection UP", host1, host2, null);
+//		processEvent(conUpCheck, "Connection UP", host1, host2, null);
+		processEvent(conUpCheck, "Close contact between ", host1, host2, null);
 	}
 
 	public void hostsDisconnected(DTNHost host1, DTNHost host2) {
-		processEvent(conDownCheck, "Connection DOWN", host1, host2, null);
+//		processEvent(conDownCheck, "Connection DOWN", host1, host2, null);
+		processEvent(conDownCheck, "Social distance secured again ", host1, host2, null);
 	}
 
 	public void messageDeleted(Message m, DTNHost where, boolean dropped) {
@@ -286,7 +288,8 @@ public class EventLogPanel extends JPanel
 					from, to, m);
 		}
 		else {
-			processEvent(msgRelayCheck, "Message relayed", from, to, m);
+//			processEvent(msgRelayCheck, "Message relayed", from, to, m);
+			processEvent(msgRelayCheck, "Covid transmitted between", from, to, m);
 		}
 	}
 
@@ -299,8 +302,10 @@ public class EventLogPanel extends JPanel
 	}
 
 	public void messageTransferStarted(Message m, DTNHost from, DTNHost to) {
-		processEvent(msgTransferStartCheck,"Message relay started", from,
-				to,m);
+//		processEvent(msgTransferStartCheck,"Message relay started", from,
+//				to,m);
+		processEvent(msgDeliveredCheck, "Covid transmission started ", from, to, m);
+
 
 	}
 

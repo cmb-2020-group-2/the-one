@@ -90,8 +90,24 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
 		this.interfacetype = s.getNameSpace();
 		this.connections = new ArrayList<Connection>();
 
+		// Add a random number between 0 and 20% of actual number to provide randomness
+		// TODO: all the group has same values, change it individually
+		rng = new Random();
 		this.transmitRange = s.getDouble(TRANSMIT_RANGE_S);
+		int rand_range = (int)this.transmitRange/5;
+		System.out.println("rand_range" + rand_range);
+		if (rand_range > 0) {
+			int noise = rng.nextInt(rand_range);
+			System.out.println(noise);
+			this.transmitRange += (double) noise;
+		}
 		this.transmitSpeed = s.getInt(TRANSMIT_SPEED_S);
+		rand_range = (int)this.transmitSpeed/5;
+		if (rand_range > 0) {
+			int noise = rng.nextInt(rand_range);
+			this.transmitSpeed += (double) noise;
+		}
+		System.out.println(this.transmitRange);
 		ensurePositiveValue(transmitRange, TRANSMIT_RANGE_S);
 		ensurePositiveValue(transmitSpeed, TRANSMIT_SPEED_S);
 	}
