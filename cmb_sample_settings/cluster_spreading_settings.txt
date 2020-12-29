@@ -7,7 +7,7 @@ Scenario.name = cluster_spreading
 Scenario.simulateConnections = true
 Scenario.updateInterval = 0.1
 # 43k ~= 12h
-Scenario.endTime = 43k
+Scenario.endTime = 16k
 
 firstinterface.type = SimpleBroadcastInterface
 # transmit speed of 2 Mbps = 250kBps
@@ -29,7 +29,7 @@ Group.interface1 = firstinterface
 Group.speed = 0.5, 1.5
 #Group.msgTtl = 60
 
-Group.nrofHosts = 40
+Group.nrofHosts = 10
 Group.nrofApplications = 0
 
 Group1.groupID = dest
@@ -71,11 +71,11 @@ Events.nrof = 1
 Events1.class = SingleMessageGenerator
 # (following settings are specific for the MessageEventGenerator class)
 # Creation interval in seconds (one new message every 25 to 35 seconds)
-Events1.interval = 100k,100k
+Events1.interval = 1k,1k
 # Message sizes (50kB - 150kB)
 Events1.size = 50k,150k
 # range of message source/destination addresses
-Events1.hosts = 1,40
+Events1.hosts = 1,10
 Events1.toHosts = 0,0
 # Message ID prefix
 Events1.prefix = M
@@ -90,13 +90,14 @@ MovementModel.worldSize = 4500, 3400
 MovementModel.warmup = 1000
 
 # how many reports to load
-Report.nrofReports = 1
+Report.nrofReports = 2
 # length of the warm up period (simulated seconds)
 Report.warmup = 0
 # default directory of reports (can be overridden per Report with output setting)
 Report.reportDir = reports/
 # Report classes to load
-Report.report1 = MessageStatsReport
+Report.report1 = MessageReport
+Report.report2 = MessageStatsReport
 
 ## Optimization settings -- these affect the speed of the simulation
 ## see World class for details.

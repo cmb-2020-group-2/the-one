@@ -453,6 +453,9 @@ public class DTNHost implements Comparable<DTNHost> {
 	 * {@link MessageRouter#receiveMessage(Message, DTNHost)}
 	 */
 	public int receiveMessage(Message m, DTNHost from) {
+		if (this.getNrofMessages() > 0) {
+			return MessageRouter.DENIED_NO_SPACE;
+		}
 		int retVal = this.router.receiveMessage(m, from);
 
 		if (retVal == MessageRouter.RCV_OK) {
