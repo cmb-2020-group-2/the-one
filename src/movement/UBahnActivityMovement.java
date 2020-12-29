@@ -53,9 +53,9 @@ public class UBahnActivityMovement extends MapBasedMovement
 	 */
 	public UBahnActivityMovement(Settings settings) {
 		super(settings);
-		distance = 100;
+		distance = 50;
 		pathFinder = new DijkstraPathFinder(null);
-		mode = WALKING_UBAHN_MODE;
+		mode = AT_UBAHN_MODE;
 
 		timeDiffSTD = settings.getInt(STD_FOR_TIME_DIFF_SETTING);
 
