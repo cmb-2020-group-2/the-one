@@ -7,7 +7,7 @@ Scenario.name = Assignment-1
 # How frequently to sample the simulation
 Scenario.updateInterval = 0.1
 # How long the simulation will run (in seconds)
-Scenario.endTime = 16000
+Scenario.endTime = 1600000
 
 Scenario.simulateConnections = true
 Scenario.nrofHostGroups = 2
@@ -68,7 +68,7 @@ Group.speed = 0.5, 1.5
 # Group.msgTtl = 300
 
 # Course Related Parameters
-Group.courseLength = 1000
+Group.courseLength = 800, 1000
 Group.nrOfCourses = 60
 Group.courseSize = 5
 Group.courseWaitTimeParetoCoeff = 0.5
@@ -79,12 +79,12 @@ Group.courseLocationsFile = data/mi/courses.wkt
 # Student Day Parameters
 Group.breakProb = 0.6
 Group.courseProb = 0.8
-Group.uBahnProb = 0.2
+Group.uBahnProb = 0.5
 Group.ubahnLocation = 1910, -75
 
 # Break Related Parameters
 Group.nrOfTables = 20
-Group.minGroupSize = 2
+Group.minGroupSize = 1
 Group.maxGroupSize = 5
 Group.timeDiffSTD = 7200
 Group.breakControlSystemNr = 1

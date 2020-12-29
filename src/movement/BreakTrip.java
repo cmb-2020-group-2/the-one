@@ -85,23 +85,6 @@ public class BreakTrip {
 	}
 
 	/**
-	 * Checks if all members of the group have found their way to the meeting
-	 *  point
-	 * @return true if all nodes are there
-	 */
-	public boolean allMembersPresent() {
-		if (!isFull()) {
-			return false;
-		}
-		for (int i = 0; i< breakActivityNodes.length; i++) {
-			if (!breakActivityNodes[i].isReadyToBreak()) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	/**
 	 * @return The destination square of the shopping trip
 	 */
 	public Coord getDestination() {

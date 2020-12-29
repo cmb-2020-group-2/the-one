@@ -48,7 +48,8 @@ public class CourseActivityMovement extends MapBasedMovement implements
 	private static int nrOfCourses = 50;
 
 	private int mode;
-	private int courseLength;
+	private int[] courseLength;
+	private double specificWaitTime;
 	private int startedWorkingTime;
 	private boolean ready;;
 	private DijkstraPathFinder pathFinder;
@@ -75,7 +76,7 @@ public class CourseActivityMovement extends MapBasedMovement implements
 	public CourseActivityMovement(Settings settings) {
 		super(settings);
 
-		courseLength = settings.getInt(COURSE_LENGTH_SETTING);
+		courseLength = settings.getCsvInts(COURSE_LENGTH_SETTING);
 		nrOfCourses = settings.getInt(NR_OF_COURSES_SETTING);
 
 		distance = settings.getInt(COURSE_SIZE_SETTING);
@@ -213,11 +214,11 @@ public class CourseActivityMovement extends MapBasedMovement implements
 		if (startedWorkingTime == -1) {
 			startedWorkingTime = SimClock.getIntTime();
 		}
-		if (SimClock.getIntTime() - startedWorkingTime >= courseLength) {
+		if (SimClock.getIntTime() >= startedWorkingTime + specificWaitTime) {
 			Path path =  new Path(1);
 			path.addWaypoint(lastWaypoint.clone());
 			ready = true;
-			return path;
+ 			return path;
 		}
 		Coord c;
 		if (sittingAtDesk) {
@@ -235,14 +236,12 @@ public class CourseActivityMovement extends MapBasedMovement implements
 
 	@Override
 	protected double generateWaitTime() {
-		int timeLeft = courseLength -
-			(SimClock.getIntTime() - startedWorkingTime);
+		int lower = courseLength[0];
+		int upper = courseLength[1];
 
-		int waitTime = (int)paretoRNG.getDouble();
-		if (waitTime > timeLeft) {
-			return timeLeft;
-		}
-		return waitTime;
+		specificWaitTime = (upper - lower) *
+				rng.nextDouble() + lower;
+		return specificWaitTime;
 	}
 
 	@Override
