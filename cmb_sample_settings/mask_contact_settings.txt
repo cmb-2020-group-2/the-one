@@ -67,12 +67,12 @@ Events1.prefix = M
 maskInterface.type = DistanceCapacityInterface
 maskInterface.transmitRange = 5
 # Max min speed, the speed between the steps is linearly interpolated.
-maskInterface.transmitSpeeds = 250k, 100k
+maskInterface.transmitSpeeds = 70k, 35k, 15k, 10k
 
 bareInterface.type = DistanceCapacityInterface
 bareInterface.transmitRange = 30
-bareInterface.transmitSpeeds = 800k, 250k
-
+bareInterface.transmitSpeeds = 140k, 70k, 30k, 20k
+# src: https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)31142-9/fulltext
 
 
 # this value is not used but needed
@@ -128,7 +128,7 @@ Group2.interface1 = maskInterface
 Report.nrofReports = 3
 Report.report1 = InterContactTimesReport
 Report.report2 = ConnectivityDtnsim2Report
-Report.report3 = MessageStatsReport
+Report.report3 = MessageGraphvizReport
 Report.reportDir = reports
 
 ##################
