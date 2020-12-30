@@ -15,7 +15,7 @@ Scenario.nrofHostGroups = 2
 ###############################
 ### Movement model settings ###
 
-MovementModel.worldSize = 2150, 1300
+MovementModel.worldSize = 2150, 2000
 
 MapBasedMovement.nrofMapFiles = 15
 MapBasedMovement.mapFile1 = data/mi/1-corridor.wkt
@@ -69,7 +69,7 @@ Group.speed = 0.5, 1.5
 
 # Course Related Parameters
 Group.courseLength = 800, 1000
-Group.nrOfCourses = 60
+Group.nrOfCourses = 30
 Group.courseSize = 5
 Group.courseWaitTimeParetoCoeff = 0.5
 Group.courseMinWaitTime = 10
