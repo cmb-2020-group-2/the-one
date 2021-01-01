@@ -70,7 +70,7 @@ Group.speed = 0.5, 1.5
 # Course Related Parameters
 Group.courseLength = 800, 1000
 Group.nrOfCourses = 30
-Group.courseSize = 5
+Group.courseSize = 100
 Group.courseWaitTimeParetoCoeff = 0.5
 Group.courseMinWaitTime = 10
 Group.courseMaxWaitTime = 100
@@ -86,7 +86,6 @@ Group.ubahnLocation = 1910, -75
 Group.nrOfTables = 20
 Group.minGroupSize = 1
 Group.maxGroupSize = 5
-Group.timeDiffSTD = 7200
 Group.breakControlSystemNr = 1
 Group.minAfterBreakStopTime = 10
 Group.maxAfterBreakStopTime = 100

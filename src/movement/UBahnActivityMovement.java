@@ -30,11 +30,9 @@ public class UBahnActivityMovement extends MapBasedMovement
 	private static final int AT_UBAHN_MODE = 1;
 	private static final int READY_MODE = 2;
 
-	private static final int DAY_LENGTH = 86000;
+	private static final int F_15_MINUTES = 900;
 
 	public static final String UBAHN_LOCATION = "ubahnLocation";
-
-	public static final String STD_FOR_TIME_DIFF_SETTING = "timeDiffSTD";
 
 	private int mode;
 	private DijkstraPathFinder pathFinder;
@@ -43,9 +41,6 @@ public class UBahnActivityMovement extends MapBasedMovement
 
 	private Coord lastWaypoint;
 	private Coord ubahnLocation;
-
-	private int timeDiffSTD;
-	private int timeDifference;
 
 	/**
 	 * Creates a new instance of UBahnActivityMovement
@@ -56,8 +51,6 @@ public class UBahnActivityMovement extends MapBasedMovement
 		distance = 50;
 		pathFinder = new DijkstraPathFinder(null);
 		mode = AT_UBAHN_MODE;
-
-		timeDiffSTD = settings.getInt(STD_FOR_TIME_DIFF_SETTING);
 
 		if (settings.contains(UBAHN_LOCATION)) {
 			try {
@@ -74,20 +67,6 @@ public class UBahnActivityMovement extends MapBasedMovement
 				e.printStackTrace();
 			}
 		}
-
-		if (timeDiffSTD == -1) {
-			timeDifference = rng.nextInt(DAY_LENGTH) - DAY_LENGTH/2;
-		} else if (timeDiffSTD == 0) {
-			timeDifference = 0;
-		} else {
-			timeDifference = (int)Math.min(
-									Math.max(
-											(rng.nextGaussian() * timeDiffSTD),
-											-DAY_LENGTH/2
-										),
-									DAY_LENGTH/2
-								);
-		}
 	}
 
 	/**
@@ -100,23 +79,7 @@ public class UBahnActivityMovement extends MapBasedMovement
 		this.pathFinder = proto.pathFinder;
 		this.mode = proto.mode;
 
-		this.timeDiffSTD = proto.timeDiffSTD;
-
 		this.ubahnLocation = proto.ubahnLocation;
-
-		if (timeDiffSTD == -1) {
-			timeDifference = rng.nextInt(DAY_LENGTH) - DAY_LENGTH/2;
-		} else if (timeDiffSTD == 0) {
-			timeDifference = 0;
-		} else {
-			timeDifference = (int)Math.min(
-									Math.max(
-											(rng.nextGaussian() * timeDiffSTD),
-											-DAY_LENGTH/2
-										),
-									DAY_LENGTH/2
-								);
-		}
 	}
 
 	@Override
@@ -177,8 +140,7 @@ public class UBahnActivityMovement extends MapBasedMovement
 	@Override
 	protected double generateWaitTime() {
 		if (mode == AT_UBAHN_MODE) {
-			return DAY_LENGTH - ((SimClock.getIntTime() + DAY_LENGTH +
-					timeDifference) % DAY_LENGTH);
+			return F_15_MINUTES * rng.nextInt(20);
 		} else {
 			return 0;
 		}

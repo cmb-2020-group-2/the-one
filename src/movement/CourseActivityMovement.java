@@ -45,13 +45,13 @@ public class CourseActivityMovement extends MapBasedMovement implements
 	public static final String COURSE_LOCATIONS_FILE_SETTING =
 		"courseLocationsFile";
 
-	private static int nrOfCourses = 50;
+	private static int nrOfCourses = 30;
 
 	private int mode;
 	private int[] courseLength;
 	private double specificWaitTime;
 	private int startedWorkingTime;
-	private boolean ready;;
+	private boolean ready;
 	private DijkstraPathFinder pathFinder;
 
 	private ParetoRNG paretoRNG;
@@ -214,6 +214,7 @@ public class CourseActivityMovement extends MapBasedMovement implements
 		if (startedWorkingTime == -1) {
 			startedWorkingTime = SimClock.getIntTime();
 		}
+		System.out.println(SimClock.getIntTime() + " " + startedWorkingTime + " " + specificWaitTime + " " + (startedWorkingTime + specificWaitTime));
 		if (SimClock.getIntTime() >= startedWorkingTime + specificWaitTime) {
 			Path path =  new Path(1);
 			path.addWaypoint(lastWaypoint.clone());
