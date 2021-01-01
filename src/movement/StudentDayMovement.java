@@ -86,6 +86,7 @@ public class StudentDayMovement extends ExtendedMovementModel {
 
 	@Override
 	public boolean newOrders() {
+		System.out.println(mode);
 		switch (mode) {
 		case UBAHN_MODE:
 			if (uBahnActivityMovement.isReady()) {
@@ -95,10 +96,10 @@ public class StudentDayMovement extends ExtendedMovementModel {
 							uBahnActivityMovement.getUBahnLocation(),
 							courseActivityMovement.getCourseLocation());
 					mode = TO_COURSE_MODE;
-				} else if (breakProb > rng.nextDouble()) {
+				} else { // if (breakProb > rng.nextDouble()) {
 					movementUsedForTransfers.setNextRoute(
 							uBahnActivityMovement.getUBahnLocation(),
-							breakActivityMovement.getBreakLocationAndGetReady());
+							breakActivityMovement.getTableLocation());
 					mode = TO_BREAK_MODE;
 				}
 			}
@@ -106,33 +107,33 @@ public class StudentDayMovement extends ExtendedMovementModel {
 		case COURSE_MODE:
 			if (courseActivityMovement.isReady()) {
 				setCurrentMovementModel(movementUsedForTransfers);
-				if (breakProb > rng.nextDouble()) {
-					movementUsedForTransfers.setNextRoute(
-							courseActivityMovement.getCourseLocation(),
-							breakActivityMovement.
-									getBreakLocationAndGetReady());
-					mode = TO_BREAK_MODE;
-				} else if (uBahnProb > rng.nextDouble()) {
+				if (uBahnProb > rng.nextDouble()) {
 					movementUsedForTransfers.setNextRoute(
 							courseActivityMovement.getCourseLocation(),
 							uBahnActivityMovement.getUBahnLocation());
 					mode = TO_UBAHN_MODE;
+				} else { // (breakProb > rng.nextDouble()) {
+					movementUsedForTransfers.setNextRoute(
+							courseActivityMovement.getCourseLocation(),
+							breakActivityMovement.
+									getTableLocation());
+					mode = TO_BREAK_MODE;
 				}
 			}
 			break;
 		case BREAK_MODE:
 			if (breakActivityMovement.isReady()) {
 				setCurrentMovementModel(movementUsedForTransfers);
-				if (courseProb > rng.nextDouble()) {
+				if (uBahnProb > rng.nextDouble()) {
 					movementUsedForTransfers.setNextRoute(
-							breakActivityMovement.getBreakLocationAndGetReady(),
-							courseActivityMovement.getCourseLocation());
-					mode = TO_COURSE_MODE;
-				} else if (uBahnProb > rng.nextDouble()) {
-					movementUsedForTransfers.setNextRoute(
-							breakActivityMovement.getBreakLocationAndGetReady(),
+							breakActivityMovement.getTableLocation(),
 							uBahnActivityMovement.getUBahnLocation());
 					mode = TO_UBAHN_MODE;
+				} else { // courseProb > rng.nextDouble()) {
+					movementUsedForTransfers.setNextRoute(
+							breakActivityMovement.getTableLocation(),
+							courseActivityMovement.getCourseLocation());
+					mode = TO_COURSE_MODE;
 				}
 			}
 			break;

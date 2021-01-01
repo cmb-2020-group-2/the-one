@@ -206,6 +206,17 @@ public class CourseActivityMovement extends MapBasedMovement implements
 			for (MapNode node : nodes) {
 				path.addWaypoint(node.getLocation());
 			}
+
+			Coord c;
+			if (sittingAtDesk) {
+				c = getRandomCoorinateInsideClass();
+				sittingAtDesk = false;
+			} else {
+				c = deskLocation.clone();
+				sittingAtDesk = true;
+			}
+			path.addWaypoint(c);
+
 			lastWaypoint = courseLocation.clone();
 			mode = AT_COURSE_MODE;
 			return path;
@@ -214,7 +225,6 @@ public class CourseActivityMovement extends MapBasedMovement implements
 		if (startedWorkingTime == -1) {
 			startedWorkingTime = SimClock.getIntTime();
 		}
-		System.out.println(SimClock.getIntTime() + " " + startedWorkingTime + " " + specificWaitTime + " " + (startedWorkingTime + specificWaitTime));
 		if (SimClock.getIntTime() >= startedWorkingTime + specificWaitTime) {
 			Path path =  new Path(1);
 			path.addWaypoint(lastWaypoint.clone());
