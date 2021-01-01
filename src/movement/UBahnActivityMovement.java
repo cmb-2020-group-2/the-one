@@ -48,7 +48,7 @@ public class UBahnActivityMovement extends MapBasedMovement
 	 */
 	public UBahnActivityMovement(Settings settings) {
 		super(settings);
-		distance = 50;
+		distance = 0;
 		pathFinder = new DijkstraPathFinder(null);
 		mode = AT_UBAHN_MODE;
 

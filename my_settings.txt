@@ -67,20 +67,20 @@ Group.speed = 0.5, 1.5
 # Message TTL of 300 minutes (5 hours)
 # Group.msgTtl = 300
 
+# Student Day Parameters
+Group.breakProb = 0.6
+Group.courseProb = 0.8
+Group.uBahnProb = 0.5
+Group.ubahnLocation = 1910, -75
+
 # Course Related Parameters
-Group.courseLength = 800, 1000
+Group.courseLength = 2400, 4800
 Group.nrOfCourses = 30
 Group.courseSize = 100
 Group.courseWaitTimeParetoCoeff = 0.5
 Group.courseMinWaitTime = 10
 Group.courseMaxWaitTime = 100
 Group.courseLocationsFile = data/mi/courses.wkt
-
-# Student Day Parameters
-Group.breakProb = 0.6
-Group.courseProb = 0.8
-Group.uBahnProb = 0.5
-Group.ubahnLocation = 1910, -75
 
 # Break Related Parameters
 Group.breakLength = 600, 1200
