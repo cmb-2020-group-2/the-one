@@ -149,6 +149,8 @@ public class UBahnActivityMovement extends MapBasedMovement
 
 			if (isFirstTime) return base;
 
+			isFirstTime = false;
+
 			// Sleep 12 - 16 hours
 			double minT = F_1_HOUR * 12;
 			double maxT = F_1_HOUR * 16;
