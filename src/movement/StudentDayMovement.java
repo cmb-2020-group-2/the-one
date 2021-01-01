@@ -86,7 +86,6 @@ public class StudentDayMovement extends ExtendedMovementModel {
 
 	@Override
 	public boolean newOrders() {
-		System.out.println(mode);
 		switch (mode) {
 		case UBAHN_MODE:
 			if (uBahnActivityMovement.isReady()) {

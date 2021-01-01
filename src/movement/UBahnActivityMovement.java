@@ -31,6 +31,7 @@ public class UBahnActivityMovement extends MapBasedMovement
 	private static final int READY_MODE = 2;
 
 	private static final int F_15_MINUTES = 900;
+	private static final int F_1_HOUR = F_15_MINUTES * 4;
 
 	public static final String UBAHN_LOCATION = "ubahnLocation";
 
@@ -42,15 +43,18 @@ public class UBahnActivityMovement extends MapBasedMovement
 	private Coord lastWaypoint;
 	private Coord ubahnLocation;
 
+	private boolean isFirstTime;
+
 	/**
 	 * Creates a new instance of UBahnActivityMovement
 	 * @param settings
 	 */
 	public UBahnActivityMovement(Settings settings) {
 		super(settings);
-		distance = 0;
+		distance = 0; // Vicinity of the u bahn enterance
 		pathFinder = new DijkstraPathFinder(null);
 		mode = AT_UBAHN_MODE;
+		isFirstTime = true;
 
 		if (settings.contains(UBAHN_LOCATION)) {
 			try {
@@ -79,6 +83,7 @@ public class UBahnActivityMovement extends MapBasedMovement
 		this.pathFinder = proto.pathFinder;
 		this.mode = proto.mode;
 
+		this.isFirstTime = proto.isFirstTime;
 		this.ubahnLocation = proto.ubahnLocation;
 	}
 
@@ -140,7 +145,16 @@ public class UBahnActivityMovement extends MapBasedMovement
 	@Override
 	protected double generateWaitTime() {
 		if (mode == AT_UBAHN_MODE) {
-			return F_15_MINUTES * rng.nextInt(20);
+			double base = F_15_MINUTES * rng.nextInt(20);
+
+			if (isFirstTime) return base;
+
+			// Sleep 12 - 16 hours
+			double minT = F_1_HOUR * 12;
+			double maxT = F_1_HOUR * 16;
+			double sleep = (maxT - minT) *
+					rng.nextDouble() + minT;
+			return base + sleep;
 		} else {
 			return 0;
 		}

@@ -76,7 +76,7 @@ Group.ubahnLocation = 1910, -75
 # Course Related Parameters
 Group.courseLength = 2400, 4800
 Group.nrOfCourses = 30
-Group.courseSize = 100
+Group.courseSize = 150
 Group.courseWaitTimeParetoCoeff = 0.5
 Group.courseMinWaitTime = 10
 Group.courseMaxWaitTime = 100

@@ -208,13 +208,8 @@ public class CourseActivityMovement extends MapBasedMovement implements
 			}
 
 			Coord c;
-			if (sittingAtDesk) {
-				c = getRandomCoorinateInsideClass();
-				sittingAtDesk = false;
-			} else {
-				c = deskLocation.clone();
-				sittingAtDesk = true;
-			}
+			c = getRandomCoorinateInsideClass();
+			sittingAtDesk = false;
 			path.addWaypoint(c);
 
 			lastWaypoint = courseLocation.clone();
@@ -231,18 +226,8 @@ public class CourseActivityMovement extends MapBasedMovement implements
 			ready = true;
  			return path;
 		}
-		Coord c;
-		if (sittingAtDesk) {
-			c = getRandomCoorinateInsideClass();
-			sittingAtDesk = false;
-		} else {
-			c = deskLocation.clone();
-			sittingAtDesk = true;
-		}
 
-		Path path =  new Path(1);
-		path.addWaypoint(c);
-		return path;
+		return null;
 	}
 
 	@Override
