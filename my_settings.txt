@@ -10,7 +10,7 @@ Scenario.updateInterval = 0.1
 Scenario.endTime = 1600000
 
 Scenario.simulateConnections = true
-Scenario.nrofHostGroups = 2
+Scenario.nrofHostGroups = 5
 
 ###############################
 ### Movement model settings ###
@@ -40,14 +40,41 @@ MapBasedMovement.mapFile15 = data/mi/corridor-connections.wkt
 
 ############
 ## Events ##
-Events.nrof = 0
+## Message creation parameters
+# How many event generators
+Events.nrof = 1
+# Class of the first event generator
+Events1.class = SingleMessageGenerator
+# (following settings are specific for the MessageEventGenerator class)
+# Creation interval in seconds (one new message every 25 to 35 seconds)
+Events1.interval = 1k,1k
+# Message sizes (50kB - 150kB)
+Events1.size = 50k,150k
+# range of message source/destination addresses
+Events1.hosts = 1,26
+Events1.toHosts = 0,0
+# Message ID prefix
+Events1.prefix = M
 
 ##########################
 ### Network Interfaces ###
 
-myInterface.type = SimpleBroadcastInterface
-myInterface.transmitRange = 10
-myInterface.transmitSpeed = 1
+# speed decreases as distance increases
+maskInterface.type = DistanceCapacityInterface
+maskInterface.transmitRange = 5
+# Max min speed, the speed between the steps is linearly interpolated.
+maskInterface.transmitSpeeds = 70k, 35k, 15k, 10k
+
+bareInterface.type = DistanceCapacityInterface
+bareInterface.transmitRange = 30
+bareInterface.transmitSpeeds = 140k, 70k, 30k, 20k
+# src: https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)31142-9/fulltext
+
+
+# this value is not used but needed
+maskInterface.transmitSpeed = 1
+### this value is not used but needed
+bareInterface.transmitSpeed = 10
 
 ##############
 ### Groups ###
@@ -59,9 +86,7 @@ Group.movementModel = MapBasedMovement
 Group.router = EpidemicRouter
 # Buffer size of any node
 Group.bufferSize = 5M
-# All nodes have the myInterface interface
 Group.nrofInterfaces = 1
-Group.interface1 = myInterface
 # Walking speeds
 Group.speed = 0.5, 1.5
 # Message TTL of 300 minutes (5 hours)
@@ -86,18 +111,42 @@ Group.courseLocationsFile = data/mi/courses.wkt
 Group.breakLength = 600, 1200
 Group.nrOfTables = 20
 
-## Group 1 Students in building
-Group1.groupID = S
+# Group1 with a single stationary node without networking that serves as a fake destination for the message.
+Group1.groupID = dest
 Group1.nrofHosts = 1
-Group1.movementModel = StudentDayMovement
-Group1.tablesFile = data/mi/tables.wkt
-Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Group1.movementModel = StationaryMovement
+Group1.nodeLocation = 0,0
+Group1.nrofInterfaces = 0
 
-## Group 2 Students from u bahn
-Group2.groupID = U
-Group2.nrofHosts = 1
 
+## Group 2 Students in building
+Group2.groupID = S
+Group2.nrofHosts = 10
+Group2.movementModel = StudentDayMovement
+Group2.tablesFile = data/mi/tables.wkt
 Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Group2.interface1 = maskInterface
+
+## Group 3 Students in building no mask
+Group3.groupID = S
+Group3.nrofHosts = 10
+Group3.movementModel = StudentDayMovement
+Group3.tablesFile = data/mi/tables.wkt
+Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Group3.interface1 = bareInterface
+
+## Group 4 Students from u bahn
+Group4.groupID = U
+Group4.nrofHosts = 3
+Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Group4.interface1 = bareInterface
+
+## Group 5 Students from u bahn
+Group5.groupID = U
+Group5.nrofHosts = 3
+Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Group5.interface1 = maskInterface
+
 
 #############
 ## Reports ##
@@ -105,7 +154,7 @@ Report.nrofReports = 1
 # Directory where reports would be created
 Report.reportDir = reports/Assignment-1
 # Report classes to load
-Report.report1 = InterContactTimesReport
+Report.report1 = CovidTransmissionReport
 ##################
 ## GUI settings ##
 
