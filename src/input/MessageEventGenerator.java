@@ -145,9 +145,9 @@ public class MessageEventGenerator implements EventQueue {
 			return hostRange[0];
 		}
 		int newHost = hostRange[0] + rng.nextInt(hostRange[1] - hostRange[0]);
-		if (this.selectedHosts.contains(newHost)){
-			return 0; // Return destination node as dummy receiver since we don't wanna send 2 message to a node
-		}
+//		if (this.selectedHosts.contains(newHost)){
+//			return 0; // Return destination node as dummy receiver since we don't wanna send 2 message to a node
+//		}
 		this.selectedHosts.add(newHost);
 		return newHost;
 	}

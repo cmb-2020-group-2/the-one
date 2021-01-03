@@ -40,10 +40,11 @@ public class MessageCreateEvent extends MessageEvent {
 	public void processEvent(World world) {
 		DTNHost to = world.getNodeByAddress(this.toAddr);
 		DTNHost from = world.getNodeByAddress(this.fromAddr);
-
-		Message m = new Message(from, to, this.id, this.size);
-		m.setResponseSize(this.responseSize);
-		from.createNewMessage(m);
+		if(from.getNrofMessages() == 0){ // only create message if node has no message
+			Message m = new Message(from, to, this.id, this.size);
+			m.setResponseSize(this.responseSize);
+			from.createNewMessage(m);
+		}
 	}
 
 	@Override
