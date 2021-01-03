@@ -17,7 +17,7 @@ Scenario.nrofHostGroups = 6
 
 MovementModel.worldSize = 2150, 2000
 
-MapBasedMovement.nrofMapFiles = 15
+MapBasedMovement.nrofMapFiles = 16
 MapBasedMovement.mapFile1 = data/mi/1-corridor.wkt
 MapBasedMovement.mapFile2 = data/mi/2-corridor.wkt
 MapBasedMovement.mapFile3 = data/mi/3-corridor.wkt
@@ -36,7 +36,7 @@ MapBasedMovement.mapFile13 = data/mi/main2_corridor.wkt
 MapBasedMovement.mapFile14 = data/mi/u-bahn.wkt
 
 MapBasedMovement.mapFile15 = data/mi/corridor-connections.wkt
-
+MapBasedMovement.mapFile16 = data/mi/course-corridor-connections.wkt
 
 ############
 ## Events ##
@@ -131,7 +131,7 @@ Group2.groupID = S
 Group2.nrofHosts = 10
 Group2.movementModel = StudentDayMovement
 Group2.tablesFile = data/mi/tables.wkt
-Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Group2.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
 Group2.interface1 = maskInterface
 
 ## Group 3 Students in building no mask
@@ -139,19 +139,19 @@ Group3.groupID = SS
 Group3.nrofHosts = 10
 Group3.movementModel = StudentDayMovement
 Group3.tablesFile = data/mi/tables.wkt
-Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Group3.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
 Group3.interface1 = bareInterface
 
 ## Group 4 Students from u bahn
 Group4.groupID = U
 Group4.nrofHosts = 3
-Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Group4.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 Group4.interface1 = bareInterface
 
 ## Group 5 Students from u bahn
 Group5.groupID = UU
 Group5.nrofHosts = 3
-Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Group5.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 Group5.interface1 = maskInterface
 
 # Group 6 Class Nodes
