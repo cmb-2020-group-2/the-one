@@ -49,7 +49,7 @@ Events1.class = SingleMessageGenerator
 # Creation interval in seconds (one new message every 25 to 35 seconds)
 Events1.interval = 1k,1k
 # Message sizes (50kB - 150kB)
-Events1.size = 50k,150k
+Events1.size = 50k
 # range of message source/destination addresses
 Events1.hosts = 1,26
 Events1.toHosts = 0,0
@@ -72,7 +72,6 @@ bareInterface.transmitSpeeds = 140k, 70k, 30k, 20k
 # src: https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)31142-9/fulltext
 bareInterface.ubahnLocation = 1910, -75
 
-
 # this value is not used but needed
 maskInterface.transmitSpeed = 1
 ### this value is not used but needed
@@ -90,7 +89,7 @@ Group.router = EpidemicRouter
 Group.bufferSize = 5M
 Group.nrofInterfaces = 1
 # Walking speeds
-Group.speed = 0.5, 1.5
+Group.speed = 0.1, 1
 # Message TTL of 300 minutes (5 hours)
 # Group.msgTtl = 300
 
@@ -130,7 +129,7 @@ Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 Group2.interface1 = maskInterface
 
 ## Group 3 Students in building no mask
-Group3.groupID = S
+Group3.groupID = SS
 Group3.nrofHosts = 10
 Group3.movementModel = StudentDayMovement
 Group3.tablesFile = data/mi/tables.wkt
@@ -144,7 +143,7 @@ Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 Group4.interface1 = bareInterface
 
 ## Group 5 Students from u bahn
-Group5.groupID = U
+Group5.groupID = UU
 Group5.nrofHosts = 3
 Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 Group5.interface1 = maskInterface
