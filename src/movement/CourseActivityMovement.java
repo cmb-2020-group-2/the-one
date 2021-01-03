@@ -118,6 +118,7 @@ public class CourseActivityMovement extends MapBasedMovement implements
 					coord.translate(offset.getX(), offset.getY());
 					allCourses.add(coord);
 				}
+
 				courseLocation = allCourses.get(
 						rng.nextInt(allCourses.size())).clone();
 			} catch (Exception e) {

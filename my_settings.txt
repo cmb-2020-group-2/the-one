@@ -10,7 +10,7 @@ Scenario.updateInterval = 0.1
 Scenario.endTime = 1600000
 
 Scenario.simulateConnections = true
-Scenario.nrofHostGroups = 5
+Scenario.nrofHostGroups = 6
 
 ###############################
 ### Movement model settings ###
@@ -72,10 +72,17 @@ bareInterface.transmitSpeeds = 140k, 70k, 30k, 20k
 # src: https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)31142-9/fulltext
 bareInterface.ubahnLocation = 1910, -75
 
+classInterface.type = DistanceCapacityInterface
+classInterface.transmitRange = 50
+classInterface.transmitSpeeds = 1k
+classInterface.ubahnLocation = 1910, -75
+
 # this value is not used but needed
 maskInterface.transmitSpeed = 1
 ### this value is not used but needed
 bareInterface.transmitSpeed = 10
+### this value is not used but needed
+classInterface.transmitSpeed = 0
 
 ##############
 ### Groups ###
@@ -102,7 +109,7 @@ Group.ubahnLocation = 1910, -75
 # Course Related Parameters
 Group.courseLength = 2400, 4800
 Group.nrOfCourses = 30
-Group.courseSize = 150
+Group.courseSize = 100
 Group.courseWaitTimeParetoCoeff = 0.5
 Group.courseMinWaitTime = 10
 Group.courseMaxWaitTime = 100
@@ -118,7 +125,6 @@ Group1.nrofHosts = 1
 Group1.movementModel = StationaryMovement
 Group1.nodeLocation = 0,0
 Group1.nrofInterfaces = 0
-
 
 ## Group 2 Students in building
 Group2.groupID = S
@@ -147,6 +153,14 @@ Group5.groupID = UU
 Group5.nrofHosts = 3
 Group.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 Group5.interface1 = maskInterface
+
+# Group 6 Class Nodes
+Group6.groupID = Class
+Group6.nrofHosts = 30
+Group6.movementModel = ClassStationaryMovement
+Group6.classLocationsFile = data/mi/courses.wkt
+Group6.nrofInterfaces = 1
+Group6.interface1 = classInterface
 
 
 #############
