@@ -5,6 +5,7 @@
 package input;
 
 import java.util.Random;
+import java.util.*;;
 
 import core.Settings;
 import core.SettingsError;
@@ -49,6 +50,8 @@ public class MessageEventGenerator implements EventQueue {
 	protected double nextEventsTime = 0;
 	/** Range of host addresses that can be senders or receivers */
 	protected int[] hostRange = {0, 0};
+	/** Range of host addresses that can be receivers */
+	protected List<Integer> selectedHosts = new ArrayList<Integer>();
 	/** Range of host addresses that can be receivers */
 	protected int[] toHostRange = null;
 	/** Next identifier for a message */
@@ -141,7 +144,12 @@ public class MessageEventGenerator implements EventQueue {
 		if (hostRange[1] == hostRange[0]) {
 			return hostRange[0];
 		}
-		return hostRange[0] + rng.nextInt(hostRange[1] - hostRange[0]);
+		int newHost = hostRange[0] + rng.nextInt(hostRange[1] - hostRange[0]);
+		if (this.selectedHosts.contains(newHost)){
+			return 0; // Return destination node as dummy receiver since we don't wanna send 2 message to a node
+		}
+		this.selectedHosts.add(newHost);
+		return newHost;
 	}
 
 	/**
