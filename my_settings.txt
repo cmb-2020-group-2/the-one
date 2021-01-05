@@ -10,7 +10,7 @@ Scenario.updateInterval = 0.1
 Scenario.endTime = 1600000
 
 Scenario.simulateConnections = true
-Scenario.nrofHostGroups = 6
+Scenario.nrofHostGroups = 7
 
 ###############################
 ### Movement model settings ###
@@ -118,6 +118,15 @@ Group.courseLocationsFile = data/mi/courses.wkt
 # Break Related Parameters
 Group.breakLength = 600, 1200
 Group.nrOfTables = 20
+Group.tablesFile = data/mi/tables.wkt
+
+Group.cigaretteSpotSize = 50
+
+# Break Related Parameters
+Group.cigaretteLength = 300, 600
+Group.nrOfCigaretteSpots = 2
+cigaretteSpotSize = 50
+Group.cigaretteSpotsFile = data/mi/cigarette.wkt
 
 # Group1 with a single stationary node without networking that serves as a fake destination for the message.
 Group1.groupID = dest
@@ -130,7 +139,6 @@ Group1.nrofInterfaces = 0
 Group2.groupID = S
 Group2.nrofHosts = 10
 Group2.movementModel = StudentDayMovement
-Group2.tablesFile = data/mi/tables.wkt
 Group2.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
 Group2.interface1 = maskInterface
 
@@ -138,7 +146,6 @@ Group2.interface1 = maskInterface
 Group3.groupID = SS
 Group3.nrofHosts = 10
 Group3.movementModel = StudentDayMovement
-Group3.tablesFile = data/mi/tables.wkt
 Group3.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
 Group3.interface1 = bareInterface
 
@@ -155,12 +162,20 @@ Group5.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 Group5.interface1 = maskInterface
 
 # Group 6 Class Nodes
-Group6.groupID = Class
+Group6.groupID = C
 Group6.nrofHosts = 30
 Group6.movementModel = ClassStationaryMovement
 Group6.classLocationsFile = data/mi/courses.wkt
 Group6.nrofInterfaces = 1
 Group6.interface1 = classInterface
+
+# Group 7 Class Nodes
+Group7.groupID = CS
+Group7.nrofHosts = 2
+Group7.movementModel = CigaretteStationaryMovement
+Group7.cigaretteLocationsFile = data/mi/cigarette.wkt
+Group7.nrofInterfaces = 1
+Group7.interface1 = classInterface
 
 
 #############
