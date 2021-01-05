@@ -85,6 +85,7 @@ maskInterface.transmitSpeed = 1
 bareInterface.transmitSpeed = 10
 ### this value is not used but needed
 classInterface.transmitSpeed = 0
+classInterface.interfaceType = stationary
 
 ##############
 ### Groups ###

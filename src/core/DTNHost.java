@@ -460,7 +460,10 @@ public class DTNHost implements Comparable<DTNHost> {
 		if (this.getNrofMessages() > 0) {
 			return MessageRouter.DENIED_NO_SPACE;
 		}
-		if(from.firstMessageTime != -1 && from.firstMessageTime + this.oneNHalfDay > SimClock.getIntTime()) {
+		if (from.getInterface(0).getType() != NetworkInterface.STATIONARY_INTERFACE
+				&& from.firstMessageTime != -1
+				&& from.firstMessageTime + this.oneNHalfDay > SimClock.getIntTime()
+		) {
 //			System.out.println("Incubation period!!");
 			return MessageRouter.INCUBATION_PERIOD;
 		}

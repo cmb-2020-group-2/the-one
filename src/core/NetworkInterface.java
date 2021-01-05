@@ -105,6 +105,15 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
     public static final String CIGARETTE_LOCATIONS = "cigaretteLocations";
     private List<Coord> cigaretteLocations = null;
 
+    public static final String INTERFACE_TYPE = "interfaceType";
+
+    public int getType() {
+        return type;
+    }
+
+    private int type = -1;
+    public static final int STATIONARY_INTERFACE = 0;
+
     static {
         DTNSim.registerForReset(NetworkInterface.class.getCanonicalName());
         reset();
@@ -182,6 +191,11 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
                 e.printStackTrace();
             }
         }
+        if (s.contains(INTERFACE_TYPE)) {
+            String t = s.getSetting(INTERFACE_TYPE);
+            if (t.equals("stationary"))
+                this.type = this.STATIONARY_INTERFACE;
+        }
     }
 
     /**
@@ -206,6 +220,7 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
         this.ah = ni.ah;
         this.ubahnLocation = ni.ubahnLocation;
         this.cigaretteLocations = ni.cigaretteLocations;
+        this.type = ni.type;
 
         if (ni.activenessJitterMax > 0) {
             this.activenessJitterValue = rng.nextInt(ni.activenessJitterMax);
