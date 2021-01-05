@@ -10,6 +10,7 @@ import java.util.List;
 
 import movement.MovementModel;
 import movement.Path;
+import report.MessageAvailabilityReport;
 import routing.MessageRouter;
 import routing.util.RoutingInfo;
 
@@ -35,6 +36,9 @@ public class DTNHost implements Comparable<DTNHost> {
 	private List<MovementListener> movListeners;
 	private List<NetworkInterface> net;
 	private ModuleCommunicationBus comBus;
+
+	private double oneNHalfDay = 129600; // in seconds
+	private double firstMessageTime = -1;
 
 	static {
 		DTNSim.registerForReset(DTNHost.class.getCanonicalName());
@@ -456,10 +460,15 @@ public class DTNHost implements Comparable<DTNHost> {
 		if (this.getNrofMessages() > 0) {
 			return MessageRouter.DENIED_NO_SPACE;
 		}
+		if(from.firstMessageTime != -1 && from.firstMessageTime + this.oneNHalfDay > SimClock.getIntTime()) {
+//			System.out.println("Incubation period!!");
+			return MessageRouter.INCUBATION_PERIOD;
+		}
 		int retVal = this.router.receiveMessage(m, from);
 
 		if (retVal == MessageRouter.RCV_OK) {
 			m.addNodeOnPath(this);	// add this node on the messages path
+			this.firstMessageTime = SimClock.getIntTime();
 		}
 
 		return retVal;
