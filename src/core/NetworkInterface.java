@@ -4,10 +4,13 @@
  */
 package core;
 
+import input.WKTReader;
 import interfaces.ConnectivityGrid;
 import interfaces.ConnectivityOptimizer;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -99,6 +102,9 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
     public static final String UBAHN_LOCATION = "ubahnLocation";
     private Coord ubahnLocation = null;
 
+    public static final String CIGARETTE_LOCATIONS = "cigaretteLocations";
+    private List<Coord> cigaretteLocations = null;
+
     static {
         DTNSim.registerForReset(NetworkInterface.class.getCanonicalName());
         reset();
@@ -152,6 +158,30 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
                 e.printStackTrace();
             }
         }
+
+        if (s.contains(CIGARETTE_LOCATIONS)) {
+            String courseLocationsFile = s.getSetting(
+                    CIGARETTE_LOCATIONS);
+            try {
+                cigaretteLocations = new LinkedList<Coord>();
+                List<Coord> locationsRead = (new WKTReader()).
+                        readPoints(new File(courseLocationsFile));
+                MapBasedMovement tmp = new MapBasedMovement(s);
+
+                for (Coord coord : locationsRead) {
+                    SimMap map = tmp.getMap();
+                    Coord offset = map.getOffset();
+                    // mirror points if map data is mirrored
+                    if (map.isMirrored()) {
+                        coord.setLocation(coord.getX(), -coord.getY());
+                    }
+                    coord.translate(offset.getX(), offset.getY());
+                    cigaretteLocations.add(coord);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -175,6 +205,7 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
         this.scanInterval = ni.scanInterval;
         this.ah = ni.ah;
         this.ubahnLocation = ni.ubahnLocation;
+        this.cigaretteLocations = ni.cigaretteLocations;
 
         if (ni.activenessJitterMax > 0) {
             this.activenessJitterValue = rng.nextInt(ni.activenessJitterMax);
@@ -266,6 +297,11 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
      * @return the transmit range
      */
     public double getTransmitRange() {
+        if(this.cigaretteLocations != null) {
+            for (Coord c : this.cigaretteLocations) {
+                if (this.host.getLocation().distance(c) < 50) return 50;
+            }
+        }
         return this.transmitRange;
     }
 

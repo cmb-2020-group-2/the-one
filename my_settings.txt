@@ -65,12 +65,14 @@ maskInterface.transmitRange = 5
 # Max min speed, the speed between the steps is linearly interpolated.
 maskInterface.transmitSpeeds = 70k, 35k, 15k, 10k
 maskInterface.ubahnLocation = 1910, -75
+maskInterface.cigaretteLocations = data/mi/cigarette.wkt
 
 bareInterface.type = DistanceCapacityInterface
 bareInterface.transmitRange = 30
 bareInterface.transmitSpeeds = 140k, 70k, 30k, 20k
 # src: https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)31142-9/fulltext
 bareInterface.ubahnLocation = 1910, -75
+bareInterface.cigaretteLocations = data/mi/cigarette.wkt
 
 classInterface.type = DistanceCapacityInterface
 classInterface.transmitRange = 50
