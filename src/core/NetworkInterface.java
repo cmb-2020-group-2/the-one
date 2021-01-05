@@ -313,6 +313,12 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
      * @return the transmit speed
      */
     public int getTransmitSpeed(NetworkInterface ni) {
+        // TODO: Find transmit speed for cigarette spots
+        if(this.cigaretteLocations != null) {
+            for (Coord c : this.cigaretteLocations) {
+                if (this.host.getLocation().distance(c) < 50) return 50;
+            }
+        }
         return this.transmitSpeed;
     }
 
