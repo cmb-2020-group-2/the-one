@@ -124,12 +124,10 @@ Group.breakLength = 600, 1200
 Group.nrOfTables = 20
 Group.tablesFile = data/mi/tables.wkt
 
-Group.cigaretteSpotSize = 50
-
-# Break Related Parameters
+# Cigarette Related Parameters
 Group.cigaretteLength = 300, 600
 Group.nrOfCigaretteSpots = 2
-cigaretteSpotSize = 50
+Group.cigaretteSpotSize = 50
 Group.cigaretteSpotsFile = data/mi/cigarette.wkt
 
 # Group1 with a single stationary node without networking that serves as a fake destination for the message.
@@ -139,29 +137,29 @@ Group1.movementModel = StationaryMovement
 Group1.nodeLocation = 0,0
 Group1.nrofInterfaces = 0
 
-## Group 2 Students in building
-Group2.groupID = S
+## Group 2 Students in building with masks
+Group2.groupID = SM
 Group2.nrofHosts = 10
 Group2.movementModel = StudentDayMovement
 Group2.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
 Group2.interface1 = maskInterface
 
-## Group 3 Students in building no mask
-Group3.groupID = SS
+## Group 3 Students in building without mask
+Group3.groupID = SB
 Group3.nrofHosts = 10
 Group3.movementModel = StudentDayMovement
 Group3.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
 Group3.interface1 = bareInterface
 
-## Group 4 Students from u bahn
-Group4.groupID = U
+## Group 4 Students with map based movement without mask
+Group4.groupID = MB
 Group4.nrofHosts = 3
 Group4.mapBasedWait = 100, 250
 Group4.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 Group4.interface1 = bareInterface
 
-## Group 5 Students from u bahn
-Group5.groupID = UU
+## Group 5 Students with map based movement with masks
+Group5.groupID = MM
 Group5.nrofHosts = 3
 Group5.mapBasedWait = 100, 250
 Group5.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
@@ -175,7 +173,7 @@ Group6.classLocationsFile = data/mi/courses.wkt
 Group6.nrofInterfaces = 1
 Group6.interface1 = classInterface
 
-# Group 7 Class Nodes
+# Group 7 Cigarette Point Nodes
 Group7.groupID = CS
 Group7.nrofHosts = 2
 Group7.movementModel = CigaretteStationaryMovement
