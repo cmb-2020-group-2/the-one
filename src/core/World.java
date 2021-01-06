@@ -154,6 +154,9 @@ public class World {
 
 		/* process all events that are due until next interval update */
 		while (this.nextQueueEventTime <= runUntil) {
+			if (this.nextEventQueue.maxNumEvents != -1){
+				if (this.nextEventQueue.currentNumEvents >= this.nextEventQueue.maxNumEvents) break;
+			}
 			simClock.setTime(this.nextQueueEventTime);
 			ExternalEvent ee = this.nextEventQueue.nextEvent();
 			ee.processEvent(this);
