@@ -145,6 +145,7 @@ public class MapBasedMovement extends MovementModel implements SwitchableMovemen
 		this.minPathLength = mbm.minPathLength;
 		this.maxPathLength = mbm.maxPathLength;
 		this.backAllowed = mbm.backAllowed;
+		this.waitTimeRange = mbm.waitTimeRange;
 	}
 
 	/**
