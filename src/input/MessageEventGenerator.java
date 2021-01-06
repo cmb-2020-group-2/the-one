@@ -46,6 +46,9 @@ public class MessageEventGenerator implements EventQueue {
 	 * whole simulation time. */
 	public static final String MESSAGE_TIME_S = "time";
 
+	// Initial num of message to create
+	public static final String MAX_NUM_EVENTS = "maxNumEvents";
+
 	/** Time of the next event (simulated seconds) */
 	protected double nextEventsTime = 0;
 	/** Range of host addresses that can be senders or receivers */
@@ -64,6 +67,9 @@ public class MessageEventGenerator implements EventQueue {
 	private int[] msgInterval;
 	/** Time range for message creation (min, max) */
 	protected double[] msgTime;
+
+	public static int maxNumEvents = -1;
+	public static int currentNumEvents = 0;
 
 	/** Random number generator for this Class */
 	protected Random rng;
@@ -132,6 +138,8 @@ public class MessageEventGenerator implements EventQueue {
 			+ msgInterval[0] +
 			(msgInterval[0] == msgInterval[1] ? 0 :
 			rng.nextInt(msgInterval[1] - msgInterval[0]));
+
+		if(s.contains(MAX_NUM_EVENTS)) maxNumEvents = s.getInt(MAX_NUM_EVENTS);
 	}
 
 
@@ -199,6 +207,8 @@ public class MessageEventGenerator implements EventQueue {
 		int interval;
 		int from;
 		int to;
+
+		this.currentNumEvents++;
 
 		/* Get two *different* nodes randomly from the host ranges */
 		from = drawHostAddress(this.hostRange);
