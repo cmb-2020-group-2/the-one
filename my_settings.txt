@@ -155,12 +155,14 @@ Group3.interface1 = bareInterface
 ## Group 4 Students from u bahn
 Group4.groupID = U
 Group4.nrofHosts = 3
+Group4.mapBasedWait = 100, 250
 Group4.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 Group4.interface1 = bareInterface
 
 ## Group 5 Students from u bahn
 Group5.groupID = UU
 Group5.nrofHosts = 3
+Group5.mapBasedWait = 100, 250
 Group5.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 Group5.interface1 = maskInterface
 

@@ -46,6 +46,8 @@ public class MapBasedMovement extends MovementModel implements SwitchableMovemen
 	/** map file -setting id ({@value})*/
 	public static final String FILE_S = "mapFile";
 
+	public static final String MAP_BASED_WAIT_TIME = "mapBasedWait";
+
 	/**
 	 * Per node group setting for selecting map node types that are OK for
 	 * this node group to traverse trough. Value must be a comma separated list
@@ -65,6 +67,8 @@ public class MapBasedMovement extends MovementModel implements SwitchableMovemen
 	/** names of the previously cached map's files (for hit comparison) */
 	private static List<String> cachedMapFiles = null;
 
+	private double[] waitTimeRange = null;
+
 	/**
 	 * Creates a new MapBasedMovement based on a Settings object's settings.
 	 * @param settings The Settings object where the settings are read from
@@ -76,6 +80,10 @@ public class MapBasedMovement extends MovementModel implements SwitchableMovemen
 		maxPathLength = 100;
 		minPathLength = 10;
 		backAllowed = false;
+
+		if (settings.contains(MAP_BASED_WAIT_TIME)) {
+			waitTimeRange = settings.getCsvDoubles(MAP_BASED_WAIT_TIME);
+		}
 	}
 
 	/**
@@ -93,6 +101,10 @@ public class MapBasedMovement extends MovementModel implements SwitchableMovemen
 		maxPathLength = 100;
 		minPathLength = 10;
 		backAllowed = false;
+
+		if (settings.contains(MAP_BASED_WAIT_TIME)) {
+			waitTimeRange = settings.getCsvDoubles(MAP_BASED_WAIT_TIME);
+		}
 	}
 
 	/**
@@ -423,6 +435,15 @@ public class MapBasedMovement extends MovementModel implements SwitchableMovemen
 			}
 		}
 		lastMapNode = nearest;
+	}
+
+	@Override
+	protected double generateWaitTime() {
+		if (this.waitTimeRange == null) {
+			return 0;
+		}
+		return (waitTimeRange[1] - waitTimeRange[0]) * rng.nextDouble() +
+				waitTimeRange[0];
 	}
 
 	public boolean isReady() {
