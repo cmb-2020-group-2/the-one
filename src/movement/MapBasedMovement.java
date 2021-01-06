@@ -442,8 +442,12 @@ public class MapBasedMovement extends MovementModel implements SwitchableMovemen
 		if (this.waitTimeRange == null) {
 			return 0;
 		}
-		return (waitTimeRange[1] - waitTimeRange[0]) * rng.nextDouble() +
-				waitTimeRange[0];
+		if (rng.nextDouble() < 0.3) {
+			return (waitTimeRange[1] - waitTimeRange[0]) * rng.nextDouble() +
+					waitTimeRange[0];
+		}
+
+		return 0;
 	}
 
 	public boolean isReady() {

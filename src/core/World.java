@@ -6,12 +6,14 @@ package core;
 
 import input.EventQueue;
 import input.ExternalEvent;
+import input.MessageEventGenerator;
 import input.ScheduledUpdatesQueue;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
 
 /**
  * World contains all the nodes and is responsible for updating their
@@ -154,8 +156,9 @@ public class World {
 
 		/* process all events that are due until next interval update */
 		while (this.nextQueueEventTime <= runUntil) {
-			if (this.nextEventQueue.maxNumEvents != -1){
-				if (this.nextEventQueue.currentNumEvents >= this.nextEventQueue.maxNumEvents) break;
+			MessageEventGenerator cast = (MessageEventGenerator) this.nextEventQueue;
+			if (cast.maxNumEvents != -1){
+				if (cast.currentNumEvents >= cast.maxNumEvents) break;
 			}
 			simClock.setTime(this.nextQueueEventTime);
 			ExternalEvent ee = this.nextEventQueue.nextEvent();

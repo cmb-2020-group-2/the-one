@@ -68,8 +68,8 @@ public class MessageEventGenerator implements EventQueue {
 	/** Time range for message creation (min, max) */
 	protected double[] msgTime;
 
-	public static int maxNumEvents = -1;
-	public static int currentNumEvents = 0;
+	public int maxNumEvents = -1;
+	public int currentNumEvents = 0;
 
 	/** Random number generator for this Class */
 	protected Random rng;

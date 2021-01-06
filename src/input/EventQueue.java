@@ -12,10 +12,6 @@ package input;
  * instructions.
  */
 public interface EventQueue {
-
-	public static int maxNumEvents = -1;
-	public static int currentNumEvents = 0;
-
 	/**
 	 * Returns the next event in the queue or ExternalEvent with time of
 	 * double.MAX_VALUE if there are no events left.
