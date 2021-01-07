@@ -554,4 +554,8 @@ public class DTNHost implements Comparable<DTNHost> {
 		return this.getAddress() - h.getAddress();
 	}
 
+	public boolean isIncubated() {
+		return this.firstMessageTime != -1
+				&& this.firstMessageTime + this.oneNHalfDay > SimClock.getIntTime();
+	}
 }
