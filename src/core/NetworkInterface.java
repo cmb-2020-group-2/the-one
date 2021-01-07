@@ -334,7 +334,7 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
     public double getTransmitRange() {
         if(this.cigaretteLocations != null) {
             for (Coord c : this.cigaretteLocations) {
-                if (this.host.getLocation().distance(c) < 50) return 50;
+                if (this.host.getLocation().distance(c) < 20) return 20;
             }
         }
         return this.transmitRange;
@@ -351,7 +351,7 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
         // TODO: Find transmit speed for cigarette spots
         if(this.cigaretteLocations != null) {
             for (Coord c : this.cigaretteLocations) {
-                if (this.host.getLocation().distance(c) < 50) return 50;
+                if (this.host.getLocation().distance(c) < 20) return this.transmitSpeed / 5;
             }
         }
         return this.transmitSpeed;
