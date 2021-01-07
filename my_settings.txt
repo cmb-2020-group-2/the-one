@@ -10,7 +10,7 @@ Scenario.updateInterval = 0.1
 Scenario.endTime = 1600000
 
 Scenario.simulateConnections = true
-Scenario.nrofHostGroups = 7
+Scenario.nrofHostGroups = 9
 
 ###############################
 ### Movement model settings ###
@@ -51,7 +51,7 @@ Events1.interval = 1
 # Message sizes (50kB - 150kB)
 Events1.size = 50k
 # range of message source/destination addresses
-Events1.hosts = 1,26
+Events1.hosts = 1,118
 Events1.toHosts = 0,0
 # Message ID prefix
 Events1.prefix = M
@@ -61,15 +61,23 @@ Events1.maxNumEvents = 10
 ### Network Interfaces ###
 
 # speed decreases as distance increases
-maskInterface.type = DistanceCapacityInterface
-maskInterface.transmitRange = 5
+n95MaskInterface.type = DistanceCapacityInterface
+n95MaskInterface.transmitRange = 1
 # Max min speed, the speed between the steps is linearly interpolated.
-maskInterface.transmitSpeeds = 70k, 35k, 15k, 10k
-maskInterface.ubahnLocation = 1910, -75
-maskInterface.cigaretteLocations = data/mi/cigarette.wkt
+n95MaskInterface.transmitSpeeds = 70k, 35k, 15k, 10k
+n95MaskInterface.ubahnLocation = 1910, -75
+n95MaskInterface.cigaretteLocations = data/mi/cigarette.wkt
+
+
+surgicalMaskInterface.type = DistanceCapacityInterface
+surgicalMaskInterface.transmitRange = 5
+# Max min speed, the speed between the steps is linearly interpolated.
+surgicalMaskInterface.transmitSpeeds = 70k, 35k, 15k, 10k
+surgicalMaskInterface.ubahnLocation = 1910, -75
+surgicalMaskInterface.cigaretteLocations = data/mi/cigarette.wkt
 
 bareInterface.type = DistanceCapacityInterface
-bareInterface.transmitRange = 30
+bareInterface.transmitRange = 12
 bareInterface.transmitSpeeds = 140k, 70k, 30k, 20k
 # src: https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)31142-9/fulltext
 bareInterface.ubahnLocation = 1910, -75
@@ -82,13 +90,24 @@ classInterface.ubahnLocation = 1910, -75
 # color red blue magenta cyan and yellow supported.
 classInterface.rangeColor = cyan
 
+cigaretteInterface.type = DistanceCapacityInterface
+cigaretteInterface.transmitRange = 20
+cigaretteInterface.transmitSpeeds = 1k
+cigaretteInterface.ubahnLocation = 1910, -75
+# color red blue magenta cyan and yellow supported.
+cigaretteInterface.rangeColor = cyan
+
 # this value is not used but needed
-maskInterface.transmitSpeed = 1
+n95MaskInterface.transmitSpeed = 1
+surgicalMaskInterface.transmitSpeed = 1
 ### this value is not used but needed
-bareInterface.transmitSpeed = 10
+bareInterface.transmitSpeed = 1
 ### this value is not used but needed
-classInterface.transmitSpeed = 0
+classInterface.transmitSpeed = 1
+cigaretteInterface.transmitSpeed = 1
+
 classInterface.interfaceType = stationary
+cigaretteInterface.interfaceType = stationary
 
 ##############
 ### Groups ###
@@ -141,31 +160,31 @@ Group1.nrofInterfaces = 0
 
 ## Group 2 Students in building with masks
 Group2.groupID = SM
-Group2.nrofHosts = 10
+Group2.nrofHosts = 25
 Group2.movementModel = StudentDayMovement
 Group2.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
-Group2.interface1 = maskInterface
+Group2.interface1 = surgicalMaskInterface
 
 ## Group 3 Students in building without mask
 Group3.groupID = SB
-Group3.nrofHosts = 10
+Group3.nrofHosts = 25
 Group3.movementModel = StudentDayMovement
 Group3.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
 Group3.interface1 = bareInterface
 
 ## Group 4 Students with map based movement without mask
 Group4.groupID = MB
-Group4.nrofHosts = 3
+Group4.nrofHosts = 8
 Group4.mapBasedWait = 100, 250
 Group4.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 Group4.interface1 = bareInterface
 
 ## Group 5 Students with map based movement with masks
 Group5.groupID = MM
-Group5.nrofHosts = 3
+Group5.nrofHosts = 8
 Group5.mapBasedWait = 100, 250
 Group5.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
-Group5.interface1 = maskInterface
+Group5.interface1 = surgicalMaskInterface
 
 # Group 6 Class Nodes
 Group6.groupID = C
@@ -181,8 +200,22 @@ Group7.nrofHosts = 2
 Group7.movementModel = CigaretteStationaryMovement
 Group7.cigaretteLocationsFile = data/mi/cigarette.wkt
 Group7.nrofInterfaces = 1
-Group7.interface1 = classInterface
+Group7.interface1 = cigaretteInterface
 
+
+## Group 8 Students in building with n95 masks
+Group8.groupID = SN
+Group8.nrofHosts = 10
+Group8.movementModel = StudentDayMovement
+Group8.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
+Group8.interface1 = n95MaskInterface
+
+## Group 9 Students with map based movement n95 masks
+Group9.groupID = MN
+Group9.nrofHosts = 10
+Group9.mapBasedWait = 100, 250
+Group9.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Group9.interface1 = n95MaskInterface
 
 #############
 ## Reports ##

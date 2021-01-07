@@ -288,13 +288,14 @@ public class EventLogPanel extends JPanel
 					from, to, m);
 		}
 		else {
-			processEvent(msgRelayCheck, "Message relayed", from, to, m);
-//			processEvent(msgRelayCheck, "Covid transmitted between", from, to, m);
+//			processEvent(msgRelayCheck, "Message relayed", from, to, m);
+			processEvent(msgRelayCheck, "Covid transmitted between", from, to, m);
 		}
 	}
 
 	public void newMessage(Message m) {
-		processEvent(msgCreateCheck, "Message created", m.getFrom(), null, m);
+//		processEvent(msgCreateCheck, "Message created", m.getFrom(), null, m);
+		processEvent(msgCreateCheck, "Node has COVID-19 in the beginning", m.getFrom(), null, m);
 	}
 
 	public void messageTransferAborted(Message m, DTNHost from, DTNHost to) {
@@ -302,9 +303,9 @@ public class EventLogPanel extends JPanel
 	}
 
 	public void messageTransferStarted(Message m, DTNHost from, DTNHost to) {
-		processEvent(msgTransferStartCheck,"Message relay started", from,
-				to,m);
-//		processEvent(msgDeliveredCheck, "Covid transmission started ", from, to, m);
+//		processEvent(msgTransferStartCheck,"Message relay started", from,
+//				to,m);
+		processEvent(msgDeliveredCheck, "Covid transmission started ", from, to, m);
 
 
 	}
