@@ -672,6 +672,8 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
     }
 
     public Color getRangeColor() {
+        if (this.host.getNrofMessages() > 0)
+            return Color.RED;
         return rangeColor;
     }
 }
