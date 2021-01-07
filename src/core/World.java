@@ -278,4 +278,8 @@ public class World {
 	public void scheduleUpdate(double simTime) {
 		scheduledUpdates.addUpdate(simTime);
 	}
+
+	public EventQueue getNextEventQueue() {
+		return this.nextEventQueue;
+	}
 }

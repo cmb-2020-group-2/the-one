@@ -47,6 +47,8 @@ public class MessageCreateEvent extends MessageEvent {
             Message m = new Message(from, to, this.id, this.size);
             m.setResponseSize(this.responseSize);
             from.createNewMessage(m);
+            MessageEventGenerator cast = (MessageEventGenerator) world.getNextEventQueue();
+            cast.currentNumEvents++;
         }
     }
 

@@ -208,8 +208,6 @@ public class MessageEventGenerator implements EventQueue {
 		int from;
 		int to;
 
-		this.currentNumEvents++;
-
 		/* Get two *different* nodes randomly from the host ranges */
 		from = drawHostAddress(this.hostRange);
 		to = drawToAddress(hostRange, from);
