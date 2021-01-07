@@ -151,6 +151,10 @@ public class UBahnActivityMovement extends MapBasedMovement
 
 			isFirstTime = false;
 
+			if (!this.getHost().isIncubated() && this.getHost().getNrofMessages() > 0 && rng.nextDouble() > 0.4) {
+				return 100000000;
+			}
+
 			// Sleep 12 - 16 hours
 			double minT = F_1_HOUR * 12;
 			double maxT = F_1_HOUR * 16;
