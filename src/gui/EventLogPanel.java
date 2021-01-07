@@ -299,7 +299,7 @@ public class EventLogPanel extends JPanel
 	}
 
 	public void messageTransferAborted(Message m, DTNHost from, DTNHost to) {
-		processEvent(msgAbortCheck, "Message relay aborted", from, to, m);
+		processEvent(msgAbortCheck, "Viral load is not enough, aborted", from, to, m);
 	}
 
 	public void messageTransferStarted(Message m, DTNHost from, DTNHost to) {

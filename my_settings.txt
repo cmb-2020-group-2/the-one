@@ -7,7 +7,8 @@ Scenario.name = Assignment-1
 # How frequently to sample the simulation
 Scenario.updateInterval = 0.1
 # How long the simulation will run (in seconds)
-Scenario.endTime = 1600000
+# 1 week
+Scenario.endTime = 604800
 
 Scenario.simulateConnections = true
 Scenario.nrofHostGroups = 9
@@ -49,13 +50,13 @@ Events1.class = SingleMessageGenerator
 # Creation interval in seconds (one new message every 25 to 35 seconds)
 Events1.interval = 1
 # Message sizes (50kB - 150kB)
-Events1.size = 50k
+Events1.size = 500k
 # range of message source/destination addresses
-Events1.hosts = 1,118
+Events1.hosts = 1,98
 Events1.toHosts = 0,0
 # Message ID prefix
 Events1.prefix = M
-Events1.maxNumEvents = 10
+Events1.maxNumEvents = 2
 
 ##########################
 ### Network Interfaces ###
@@ -64,7 +65,7 @@ Events1.maxNumEvents = 10
 n95MaskInterface.type = DistanceCapacityInterface
 n95MaskInterface.transmitRange = 1
 # Max min speed, the speed between the steps is linearly interpolated.
-n95MaskInterface.transmitSpeeds = 70k, 35k, 15k, 10k
+n95MaskInterface.transmitSpeeds = 5k, 3k, 1k
 n95MaskInterface.ubahnLocation = 1910, -75
 n95MaskInterface.cigaretteLocations = data/mi/cigarette.wkt
 
@@ -72,27 +73,27 @@ n95MaskInterface.cigaretteLocations = data/mi/cigarette.wkt
 surgicalMaskInterface.type = DistanceCapacityInterface
 surgicalMaskInterface.transmitRange = 5
 # Max min speed, the speed between the steps is linearly interpolated.
-surgicalMaskInterface.transmitSpeeds = 70k, 35k, 15k, 10k
+surgicalMaskInterface.transmitSpeeds = 5k, 3k, 1k
 surgicalMaskInterface.ubahnLocation = 1910, -75
 surgicalMaskInterface.cigaretteLocations = data/mi/cigarette.wkt
 
 bareInterface.type = DistanceCapacityInterface
-bareInterface.transmitRange = 12
-bareInterface.transmitSpeeds = 140k, 70k, 30k, 20k
+bareInterface.transmitRange = 10
+bareInterface.transmitSpeeds = 10k, 8k, 6k
 # src: https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)31142-9/fulltext
 bareInterface.ubahnLocation = 1910, -75
 bareInterface.cigaretteLocations = data/mi/cigarette.wkt
 
 classInterface.type = DistanceCapacityInterface
 classInterface.transmitRange = 50
-classInterface.transmitSpeeds = 1k
+classInterface.transmitSpeeds = 2k
 classInterface.ubahnLocation = 1910, -75
 # color red blue magenta cyan and yellow supported.
 classInterface.rangeColor = cyan
 
 cigaretteInterface.type = DistanceCapacityInterface
 cigaretteInterface.transmitRange = 20
-cigaretteInterface.transmitSpeeds = 1k
+cigaretteInterface.transmitSpeeds = 2k
 cigaretteInterface.ubahnLocation = 1910, -75
 # color red blue magenta cyan and yellow supported.
 cigaretteInterface.rangeColor = cyan
@@ -164,14 +165,14 @@ Group2.interface1 = surgicalMaskInterface
 
 ## Group 3 Students in building without mask
 Group3.groupID = SB
-Group3.nrofHosts = 25
+Group3.nrofHosts = 8
 Group3.movementModel = StudentDayMovement
 Group3.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
 Group3.interface1 = bareInterface
 
 ## Group 4 Students with map based movement without mask
 Group4.groupID = MB
-Group4.nrofHosts = 8
+Group4.nrofHosts = 5
 Group4.mapBasedWait = 100, 250
 Group4.okMaps = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 Group4.interface1 = bareInterface

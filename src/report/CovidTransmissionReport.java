@@ -36,7 +36,6 @@ public class CovidTransmissionReport extends Report implements MessageListener {
                 + "null "
                 + format(getSimTime()) + " "
                 + m.getFrom().getLocation();
-        System.out.println(event_string);
         write(event_string);
     }
 
