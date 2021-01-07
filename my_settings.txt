@@ -79,6 +79,8 @@ classInterface.type = DistanceCapacityInterface
 classInterface.transmitRange = 50
 classInterface.transmitSpeeds = 1k
 classInterface.ubahnLocation = 1910, -75
+# color red blue magenta cyan and yellow supported.
+classInterface.rangeColor = cyan
 
 # this value is not used but needed
 maskInterface.transmitSpeed = 1

@@ -8,6 +8,7 @@ import input.WKTReader;
 import interfaces.ConnectivityGrid;
 import interfaces.ConnectivityOptimizer;
 
+import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -114,6 +115,10 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
     private int type = -1;
     public static final int STATIONARY_INTERFACE = 0;
 
+    public static final String RANGE_COLOR = "rangeColor";
+
+    private Color rangeColor = Color.GREEN;
+
     static {
         DTNSim.registerForReset(NetworkInterface.class.getCanonicalName());
         reset();
@@ -196,6 +201,20 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
             if (t.equals("stationary"))
                 this.type = this.STATIONARY_INTERFACE;
         }
+
+        if (s.contains(RANGE_COLOR)) {
+            String t = s.getSetting(RANGE_COLOR);
+            if (t.equals("red"))
+                this.rangeColor = Color.RED;
+            if (t.equals("blue"))
+                this.rangeColor = Color.BLUE;
+            if (t.equals("magenta"))
+                this.rangeColor = Color.MAGENTA;
+            if (t.equals("cyan"))
+                this.rangeColor = Color.CYAN;
+            if (t.equals("yellow"))
+                this.rangeColor = Color.YELLOW;
+        }
     }
 
     /**
@@ -221,6 +240,7 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
         this.ubahnLocation = ni.ubahnLocation;
         this.cigaretteLocations = ni.cigaretteLocations;
         this.type = ni.type;
+        this.rangeColor = ni.rangeColor;
 
         if (ni.activenessJitterMax > 0) {
             this.activenessJitterValue = rng.nextInt(ni.activenessJitterMax);
@@ -651,4 +671,7 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
                 ". Connections: " + this.connections;
     }
 
+    public Color getRangeColor() {
+        return rangeColor;
+    }
 }
