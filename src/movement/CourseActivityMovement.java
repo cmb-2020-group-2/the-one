@@ -36,12 +36,6 @@ public class CourseActivityMovement extends MapBasedMovement implements
 	public static final String NR_OF_COURSES_SETTING = "nrOfCourses";
 
 	public static final String COURSE_SIZE_SETTING = "courseSize";
-	public static final String COURSE_WAIT_TIME_PARETO_COEFF_SETTING =
-		"courseWaitTimeParetoCoeff";
-	public static final String COURSE_MIN_WAIT_TIME_SETTING =
-		"courseMinWaitTime";
-	public static final String COURSE_MAX_WAIT_TIME_SETTING =
-		"courseMaxWaitTime";
 	public static final String COURSE_LOCATIONS_FILE_SETTING =
 		"courseLocationsFile";
 
@@ -53,8 +47,6 @@ public class CourseActivityMovement extends MapBasedMovement implements
 	private int startedWorkingTime;
 	private boolean ready;
 	private DijkstraPathFinder pathFinder;
-
-	private ParetoRNG paretoRNG;
 
 	private int distance;
 	private double courseWaitTimeParetoCoeff;
@@ -80,10 +72,6 @@ public class CourseActivityMovement extends MapBasedMovement implements
 		nrOfCourses = settings.getInt(NR_OF_COURSES_SETTING);
 
 		distance = settings.getInt(COURSE_SIZE_SETTING);
-		courseWaitTimeParetoCoeff = settings.getDouble(
-				COURSE_WAIT_TIME_PARETO_COEFF_SETTING);
-		courseMinWaitTime = settings.getDouble(COURSE_MIN_WAIT_TIME_SETTING);
-		courseMaxWaitTime = settings.getDouble(COURSE_MAX_WAIT_TIME_SETTING);
 
 		startedWorkingTime = -1;
 		pathFinder = new DijkstraPathFinder(null);
@@ -127,8 +115,6 @@ public class CourseActivityMovement extends MapBasedMovement implements
 		}
 
 		deskLocation = getRandomCoorinateInsideClass();
-		paretoRNG = new ParetoRNG(rng, courseWaitTimeParetoCoeff,
-				courseMinWaitTime, courseMaxWaitTime);
 	}
 
 	/**
@@ -160,7 +146,6 @@ public class CourseActivityMovement extends MapBasedMovement implements
 		courseMaxWaitTime = proto.courseMaxWaitTime;
 
 		deskLocation = getRandomCoorinateInsideClass();
-		this.paretoRNG = proto.paretoRNG;
 	}
 
 	public Coord getRandomCoorinateInsideClass() {

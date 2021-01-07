@@ -135,9 +135,6 @@ Group.ubahnLocation = 1910, -75
 Group.courseLength = 2400, 4800
 Group.nrOfCourses = 30
 Group.courseSize = 100
-Group.courseWaitTimeParetoCoeff = 0.5
-Group.courseMinWaitTime = 10
-Group.courseMaxWaitTime = 100
 Group.courseLocationsFile = data/mi/courses.wkt
 
 # Break Related Parameters
