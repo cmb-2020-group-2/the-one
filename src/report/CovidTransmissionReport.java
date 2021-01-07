@@ -11,11 +11,10 @@ import core.MessageListener;
 /**
  * Reports delivered messages
  * report csv:
- *  message_id, from, to, creation_time, host_location
  */
 public class CovidTransmissionReport extends Report implements MessageListener {
     public static final String HEADER =
-            "message_id, from, to, creation_time";
+            "message_id, from, to, creation_time, host_location";
     /** all message delays */
 
     /**
@@ -31,7 +30,15 @@ public class CovidTransmissionReport extends Report implements MessageListener {
         write(HEADER);
     }
 
-    public void newMessage(Message m) {}
+    public void newMessage(Message m) {
+        String event_string = m.getId() + " "
+                + m.getFrom().toString() + " "
+                + "null "
+                + format(getSimTime()) + " "
+                + m.getFrom().getLocation();
+        System.out.println(event_string);
+        write(event_string);
+    }
 
     public void messageTransferred(Message m, DTNHost from, DTNHost to,
                                    boolean finalTarget) {
