@@ -232,8 +232,8 @@ Report.report7 = TotalContactTimeReport
 
 TotalContactTimeReport.granularity = 1000
 NodeDensityReport.sampleInterval = 10
-NodeDensityReport.xCount = 128
-NodeDensityReport.yCount = 128
+NodeDensityReport.xCount = 90
+NodeDensityReport.yCount = 90
 NodeDensityReport.outputGnuplot = true
 NodeDensityReport.onlyAverage = true
 
