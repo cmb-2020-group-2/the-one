@@ -98,4 +98,7 @@ public class CigaretteStationaryMovement extends MovementModel {
 		return new CigaretteStationaryMovement(this);
 	}
 
+	public static void reset() {
+		nextID = 0;
+	}
 }

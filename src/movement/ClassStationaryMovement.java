@@ -100,4 +100,7 @@ public class ClassStationaryMovement extends MovementModel {
 		return new ClassStationaryMovement(this);
 	}
 
+	public static void reset() {
+		nextID = 0;
+	}
 }
