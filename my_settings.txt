@@ -218,7 +218,7 @@ Group9.interface1 = n95MaskInterface
 
 #############
 ## Reports ##
-Report.nrofReports = 10
+Report.nrofReports = 7
 # Directory where reports would be created
 Report.reportDir = reports/Assignment-1
 # Report classes to load
@@ -227,12 +227,10 @@ Report.report2 = MessageGraphvizReport
 Report.report3 = CovidStatsReport
 Report.report4 = EncountersVSUniqueEncountersReport
 Report.report5 = ContactsPerHourReport
-Report.report6 = MessageDeliveryReport
-Report.report7 = NodeDensityReport
-Report.report8 = TotalContactTimeReport
-Report.report9 = TotalEncountersReport
-Report.report10 = UniqueEncountersReport
+Report.report6 = NodeDensityReport
+Report.report7 = TotalContactTimeReport
 
+TotalContactTimeReport.granularity = 1000
 NodeDensityReport.sampleInterval = 10
 NodeDensityReport.xCount = 128
 NodeDensityReport.yCount = 128
