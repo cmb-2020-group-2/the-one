@@ -3,7 +3,7 @@
 ### Scenario settings ###
 
 # Name to identify the present scenario
-Scenario.name = Assignment-1
+Scenario.name = [seed0; seed1; seed2; seed3; seed4; seed5; seed6; seed7; seed8; seed9]
 # How frequently to sample the simulation
 Scenario.updateInterval = 0.1
 # How long the simulation will run (in seconds)
@@ -17,6 +17,7 @@ Scenario.nrofHostGroups = 9
 ### Movement model settings ###
 
 MovementModel.worldSize = 2150, 2000
+MovementModel.rngSeed = [0; 22; 42; 1071; 1453; 1881; 1923; 1939; 1996; 2023]
 
 MapBasedMovement.nrofMapFiles = 16
 MapBasedMovement.mapFile1 = data/mi/1-corridor.wkt
