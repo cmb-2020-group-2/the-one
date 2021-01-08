@@ -37,7 +37,7 @@ public class CovidTransmissionReport extends Report implements MessageListener {
                 + format(getSimTime()) + "|"
                 + m.getFrom().getLocation() + "|"
                 + m.getFrom().getSpecificLocationName() + "|"
-                + m.getFrom().getLocation().distance(m.getTo().getLocation());
+                + "|";
         write(event_string);
     }
 
@@ -48,10 +48,10 @@ public class CovidTransmissionReport extends Report implements MessageListener {
                 + to.toString() + "|"
                 + format(getSimTime()) + "|"
                 + from.getLocation() + "|"
-                + to.getSpecificLocationName();
+                + to.getSpecificLocationName() + "I"
+                + m.getFrom().getLocation().distance(m.getTo().getLocation());
         System.out.println(event_string);
         write(event_string);
-
     }
 
     @Override
