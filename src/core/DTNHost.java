@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import movement.MovementModel;
-import movement.Path;
+import movement.*;
 import report.MessageAvailabilityReport;
 import routing.MessageRouter;
 import routing.util.RoutingInfo;
@@ -557,5 +556,48 @@ public class DTNHost implements Comparable<DTNHost> {
 	public boolean isIncubated() {
 		return this.firstMessageTime != -1
 				&& this.firstMessageTime + this.oneNHalfDay > SimClock.getIntTime();
+	}
+
+	public String getSpecificLocationName(){
+		if (this.movement instanceof StudentDayMovement) {
+			StudentDayMovement sdm = (StudentDayMovement) this.movement;
+			SwitchableMovement sm = sdm.getModel();
+
+			if (sm instanceof CourseActivityMovement) {
+				CourseActivityMovement cam = (CourseActivityMovement)sm;
+				for (int i = 0; i < cam.getAllCourses().size(); i++) {
+					Coord c = cam.getAllCourses().get(i);
+					if (this.location.distance(c) < 100) {
+						return "C" + i;
+					}
+				}
+			}
+
+			if (sm instanceof BreakActivityMovement) {
+				BreakActivityMovement bam = (BreakActivityMovement)sm;
+				for (int i = 0; i < bam.getAllTables().size(); i++) {
+					Coord c = bam.getAllTables().get(i);
+					if (this.location.distance(c) < 5) {
+						return "T" + i;
+					}
+				}
+			}
+
+			if (sm instanceof CigaretteActivityMovement) {
+				CigaretteActivityMovement cam = (CigaretteActivityMovement)sm;
+				for (int i = 0; i < cam.getAllCigaretteSpots().size(); i++) {
+					Coord c = cam.getAllCigaretteSpots().get(i);
+					if (this.location.distance(c) < 20) {
+						return "T" + i;
+					}
+				}
+			}
+
+			if (sm instanceof UBahnActivityMovement) {
+				return "U";
+			}
+		}
+
+		return "Walking Areas";
 	}
 }

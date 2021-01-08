@@ -225,4 +225,6 @@ public class StudentDayMovement extends ExtendedMovementModel {
     public MovementModel replicate() {
         return new StudentDayMovement(this);
     }
+
+    public SwitchableMovement getModel() {return this.getCurrentMovementModel(); }
 }

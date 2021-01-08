@@ -262,4 +262,5 @@ public class CourseActivityMovement extends MapBasedMovement implements
 		return courseLocation.clone();
 	}
 
+	public List<Coord> getAllCourses() { return this.allCourses; }
 }

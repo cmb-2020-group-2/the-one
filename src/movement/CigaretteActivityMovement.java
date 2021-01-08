@@ -222,4 +222,6 @@ public class CigaretteActivityMovement extends MapBasedMovement
     public Coord getTableLocation() {
         return cigaretteSpotLocation.clone();
     }
+
+    public List<Coord> getAllCigaretteSpots() { return this.allCigaretteSpots; }
 }

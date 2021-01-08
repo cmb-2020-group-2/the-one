@@ -210,4 +210,6 @@ public class BreakActivityMovement extends MapBasedMovement
     public Coord getTableLocation() {
         return tableLocation.clone();
     }
+
+    public List<Coord> getAllTables() { return this.allTables; }
 }

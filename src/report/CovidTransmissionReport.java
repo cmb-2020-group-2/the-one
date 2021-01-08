@@ -14,7 +14,7 @@ import core.MessageListener;
  */
 public class CovidTransmissionReport extends Report implements MessageListener {
     public static final String HEADER =
-            "message_id, from, to, creation_time, host_location";
+            "message_id|from|to|creation_time|host_location|section";
     /** all message delays */
 
     /**
@@ -31,21 +31,23 @@ public class CovidTransmissionReport extends Report implements MessageListener {
     }
 
     public void newMessage(Message m) {
-        String event_string = m.getId() + " "
-                + m.getFrom().toString() + " "
-                + "null "
-                + format(getSimTime()) + " "
-                + m.getFrom().getLocation();
+        String event_string = m.getId() + "|"
+                + "|"
+                + m.getFrom().toString() + "|"
+                + format(getSimTime()) + "|"
+                + m.getFrom().getLocation() + "|"
+                + m.getFrom().getSpecificLocationName();
         write(event_string);
     }
 
     public void messageTransferred(Message m, DTNHost from, DTNHost to,
                                    boolean finalTarget) {
-        String event_string = m.getId() + " "
-                + from.toString() + " "
-                + to.toString() + " "
-                + format(getSimTime()) + " "
-                + from.getLocation();
+        String event_string = m.getId() + "|"
+                + from.toString() + "|"
+                + to.toString() + "|"
+                + format(getSimTime()) + "|"
+                + from.getLocation() + "|"
+                + to.getSpecificLocationName();
         System.out.println(event_string);
         write(event_string);
 
