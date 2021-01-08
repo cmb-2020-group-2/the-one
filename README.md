@@ -1,9 +1,23 @@
-# The ONE
+# COVID-19 Simulator
 
-The Opportunistic Network Environment simulator.
+Group 2 - Assignment 1
 
-For introduction and releases, see [the ONE homepage at GitHub](http://akeranen.github.io/the-one/).
+Group Members
+* Ece Ata		
+* Enis Simsar	
+* Ömer Kirbiyik
 
-For instructions on how to get started, see [the README](https://github.com/akeranen/the-one/wiki/README).
+**This project is based on the simulator provided by [the ONE](http://akeranen.github.io/the-one/) and [CMB at TUM](https://github.com/teemu-tum/the-one).**
 
-The [wiki page](https://github.com/akeranen/the-one/wiki) has the latest information.
+## Reproducing the experiment
+
+Provide following argument to the program
+```
+-b 10 my_settings.txt
+```
+
+All reports are located under `reports/Assignment-1/`. They are named according to random seed order.
+
+For further insights on experiments check Jupyter notebooks under `notebooks/`.
+
+
