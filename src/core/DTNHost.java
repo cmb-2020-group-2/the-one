@@ -568,7 +568,7 @@ public class DTNHost implements Comparable<DTNHost> {
 				for (int i = 0; i < cam.getAllCourses().size(); i++) {
 					Coord c = cam.getAllCourses().get(i);
 					if (this.location.distance(c) < 100) {
-						return "C" + i;
+						return "Class " + i;
 					}
 				}
 			}
@@ -578,7 +578,7 @@ public class DTNHost implements Comparable<DTNHost> {
 				for (int i = 0; i < bam.getAllTables().size(); i++) {
 					Coord c = bam.getAllTables().get(i);
 					if (this.location.distance(c) < 5) {
-						return "T" + i;
+						return "Table " + i;
 					}
 				}
 			}
@@ -588,13 +588,13 @@ public class DTNHost implements Comparable<DTNHost> {
 				for (int i = 0; i < cam.getAllCigaretteSpots().size(); i++) {
 					Coord c = cam.getAllCigaretteSpots().get(i);
 					if (this.location.distance(c) < 20) {
-						return "T" + i;
+						return "Cigarette Spot " + i;
 					}
 				}
 			}
 
 			if (sm instanceof UBahnActivityMovement) {
-				return "U";
+				return "U-Bahn";
 			}
 		}
 
