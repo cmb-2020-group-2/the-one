@@ -5,6 +5,7 @@
 package movement;
 
 import core.Coord;
+import core.DTNSim;
 import core.Settings;
 import input.WKTReader;
 import movement.map.SimMap;
@@ -25,6 +26,12 @@ public class CigaretteStationaryMovement extends MovementModel {
 	private int id;
 	private static int nextID = 0;
 	private List<Coord> allCigaretteSpots;
+
+	// static initialization of all movement models' random number generator
+	static {
+		DTNSim.registerForReset(CigaretteStationaryMovement.class.getCanonicalName());
+		reset();
+	}
 
 	/**
 	 * Creates a new movement model based on a Settings object's settings.

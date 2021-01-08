@@ -5,6 +5,7 @@
 package movement;
 
 import core.Coord;
+import core.DTNSim;
 import core.Settings;
 import input.WKTReader;
 import movement.map.MapNode;
@@ -27,6 +28,12 @@ public class ClassStationaryMovement extends MovementModel {
 	private int id;
 	private static int nextID = 0;
 	private List<Coord> allCourses;
+
+	// static initialization of all movement models' random number generator
+	static {
+		DTNSim.registerForReset(ClassStationaryMovement.class.getCanonicalName());
+		reset();
+	}
 
 	/**
 	 * Creates a new movement model based on a Settings object's settings.
