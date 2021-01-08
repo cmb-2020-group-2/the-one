@@ -56,7 +56,7 @@ Events1.hosts = 1,98
 Events1.toHosts = 0,0
 # Message ID prefix
 Events1.prefix = M
-Events1.maxNumEvents = 2
+Events1.maxNumEvents = 3
 
 ##########################
 ### Network Interfaces ###
@@ -217,11 +217,28 @@ Group9.interface1 = n95MaskInterface
 
 #############
 ## Reports ##
-Report.nrofReports = 1
+Report.nrofReports = 10
 # Directory where reports would be created
 Report.reportDir = reports/Assignment-1
 # Report classes to load
 Report.report1 = CovidTransmissionReport
+Report.report2 = MessageGraphvizReport
+Report.report3 = CovidStatsReport
+Report.report4 = EncountersVSUniqueEncountersReport
+Report.report5 = ContactsPerHourReport
+Report.report6 = MessageDeliveryReport
+Report.report7 = NodeDensityReport
+Report.report8 = TotalContactTimeReport
+Report.report9 = TotalEncountersReport
+Report.report10 = UniqueEncountersReport
+
+NodeDensityReport.sampleInterval = 10
+NodeDensityReport.xCount = 50
+NodeDensityReport.yCount = 50
+NodeDensityReport.outputGnuplot = true
+NodeDensityReport.onlyAverage = true
+
+
 ##################
 ## GUI settings ##
 

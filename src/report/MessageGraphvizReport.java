@@ -40,7 +40,7 @@ public class MessageGraphvizReport extends Report implements MessageListener {
 
 	public void messageTransferred(Message m, DTNHost from,
 			DTNHost to,	boolean firstDelivery) {
-		if (firstDelivery && !isWarmupID(m.getId())) {
+		if (!isWarmupID(m.getId())) {
 			newEvent();
 			this.deliveredMessages.add(m);
 		}
@@ -62,11 +62,7 @@ public class MessageGraphvizReport extends Report implements MessageListener {
 		for (Message m : deliveredMessages) {
 			List<DTNHost> path = m.getHops();
 			String pathString = path.remove(0).toString(); // start node
-
-			for (DTNHost next : path) {
-				pathString += "->" + next.toString();
-			}
-
+			pathString += "->" + path.remove(0).toString(); // start node
 			write (pathString + ";");
 		}
 

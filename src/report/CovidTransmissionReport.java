@@ -14,7 +14,7 @@ import core.MessageListener;
  */
 public class CovidTransmissionReport extends Report implements MessageListener {
     public static final String HEADER =
-            "message_id|from|to|creation_time|host_location|section";
+            "message_id|from|to|creation_time|host_location|section|distance";
     /** all message delays */
 
     /**
@@ -36,7 +36,8 @@ public class CovidTransmissionReport extends Report implements MessageListener {
                 + m.getFrom().toString() + "|"
                 + format(getSimTime()) + "|"
                 + m.getFrom().getLocation() + "|"
-                + m.getFrom().getSpecificLocationName();
+                + m.getFrom().getSpecificLocationName() + "|"
+                + m.getFrom().getLocation().distance(m.getTo().getLocation());
         write(event_string);
     }
 

@@ -44,7 +44,7 @@ extends SamplingReport {
 	/** Default number of divisions along the y-axis ({@value}). */
 	public static final int DEFAULT_Y_COUNT = 10;
 	/** Default value for outputting gnuplot instead of raw data ({@value}). */
-	public static final boolean DEFAULT_GNUPLOT = false;
+	public static final boolean DEFAULT_GNUPLOT = true;
 	/** Default value for gnuplot terminal ({@value}). */
 	public static final String DEFAULT_GNUPLOT_TERMINAL =
 			"png size 1024,768";
