@@ -233,8 +233,8 @@ Report.report9 = TotalEncountersReport
 Report.report10 = UniqueEncountersReport
 
 NodeDensityReport.sampleInterval = 10
-NodeDensityReport.xCount = 50
-NodeDensityReport.yCount = 50
+NodeDensityReport.xCount = 128
+NodeDensityReport.yCount = 128
 NodeDensityReport.outputGnuplot = true
 NodeDensityReport.onlyAverage = true
 
